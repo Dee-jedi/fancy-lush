@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #fffbeb; /* Amber-50 */
+    --foreground: #451a03;
+    --primary: #b45309; /* Amber-700 */
+    --primary-foreground: #fffbeb;
+    --secondary: #fef3c7; /* Amber-100 */
+    --secondary-foreground: #92400e;
+    --accent: #d97706; /* Amber-600 */
+    --accent-foreground: #fffbeb;
+    --radius: 1rem; /* Very rounded luxury feel */
+  }
+
+  .dark {
+    --background: #451a03;
+    --foreground: #fffbeb;
+    --primary: #d97706;
+    --primary-foreground: #451a03;
+    --secondary: #92400e;
+    --secondary-foreground: #fef3c7;
+    --accent: #b45309;
+    --accent-foreground: #fffbeb;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--secondary);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
