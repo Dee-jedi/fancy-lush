@@ -112,7 +112,11 @@ export const Products = () => {
 
         {/* See More Button */}
         <div className="mt-20 text-center">
-          <Button variant="outline" className="px-12 py-5 border-[var(--primary)]/10 text-[var(--primary)] font-bold">
+          <Button 
+            href="/shop"
+            variant="outline" 
+            className="px-12 py-5 border-[var(--primary)]/10 text-[var(--primary)] font-bold"
+          >
             View Full Collection
           </Button>
         </div>
