@@ -1,13 +1,5 @@
 export const SERVICES = [
-  { 
-    id: "massage",
-    name: "Massage", 
-    description: "Holistic deep tissue and aromatherapy relaxation",
-    fullDescription: "Experience the ultimate escape with our signature deep tissue and aromatherapy massage. Our expert therapists use a combination of traditional techniques and premium essential oils to release muscle tension, improve circulation, and restore your inner peace. Whether you're recovering from a long week or just need a moment of tranquility, our massage therapy is designed to rejuvenate both body and spirit.",
-    price: "₦25,000",
-    duration: "60 - 90 Mins",
-    image: "https://images.unsplash.com/photo-1600334129128-f8526ed95059?q=80&w=800&auto=format&fit=crop"
-  },
+ 
   { 
     id: "facials",
     name: "Facials", 
@@ -34,6 +26,15 @@ export const SERVICES = [
     price: "₦85,000",
     duration: "120 Mins",
     image: "https://images.unsplash.com/photo-1595123550441-d373f9f92ba4?q=80&w=800&auto=format&fit=crop"
+  },
+   { 
+    id: "massage",
+    name: "Massage", 
+    description: "Holistic deep tissue and aromatherapy relaxation",
+    fullDescription: "Experience the ultimate escape with our signature deep tissue and aromatherapy massage. Our expert therapists use a combination of traditional techniques and premium essential oils to release muscle tension, improve circulation, and restore your inner peace. Whether you're recovering from a long week or just need a moment of tranquility, our massage therapy is designed to rejuvenate both body and spirit.",
+    price: "₦25,000",
+    duration: "60 - 90 Mins",
+    image: "/images/massage.png"
   },
   { 
     id: "waxing",
@@ -74,15 +75,7 @@ export const SERVICES = [
 ];
 
 export const PRODUCTS = [
-  { 
-    id: "radiance-serum",
-    name: "Radiance Serum", 
-    price: "₦18,500", 
-    tag: "Best Seller",
-    description: "Illuminating vitamin C complex for a natural glow",
-    fullDescription: "Our Radiance Serum is a powerhouse of Vitamin C and botanical extracts designed specifically for vibrant skin. It targets dark spots, evens out skin tone, and provides an immediate luminosity that lasts all day. Lightweight and fast-absorbing, it's the perfect first step in your daily glow routine.",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143af7bf?q=80&w=800&auto=format&fit=crop"
-  },
+  
   { 
     id: "hydra-lush-mist",
     name: "Hydra-Lush Mist", 
@@ -118,6 +111,15 @@ export const PRODUCTS = [
     description: "Gentle pH-balanced milk cleanser for sensitive skin",
     fullDescription: "A gentle start to your beauty ritual. This pH-balanced milk cleanser removes impurities and makeup without stripping the skin of its essential moisture. Formulated with oat milk and green tea, it leaves your face feeling silky smooth and perfectly prepped.",
     image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop"
+  },
+  { 
+    id: "radiance-serum",
+    name: "Radiance Serum", 
+    price: "₦18,500", 
+    tag: "Best Seller",
+    description: "Illuminating vitamin C complex for a natural glow",
+    fullDescription: "Our Radiance Serum is a powerhouse of Vitamin C and botanical extracts designed specifically for vibrant skin. It targets dark spots, evens out skin tone, and provides an immediate luminosity that lasts all day. Lightweight and fast-absorbing, it's the perfect first step in your daily glow routine.",
+    image: "/images/radiance-serum.png"
   },
 ];
 

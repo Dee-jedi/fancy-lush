@@ -66,10 +66,10 @@ export const Products = () => {
             {PRODUCTS.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.05 }}
               className="flex-none w-[280px] md:w-[360px] bg-white rounded-[40px] overflow-hidden group border border-gray-100/50 shadow-sm hover:shadow-xl transition-all duration-700 py-0"
             >
               <Link href={`/products/${product.id}`} className="block">
