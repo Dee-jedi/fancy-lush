@@ -2,16 +2,21 @@
 
 import React from 'react';
 import { motion, HTMLMotionProps } from "framer-motion";
+import Link from "next/link";
 
 interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
+  href?: string;
   children: React.ReactNode;
 }
+
+const MotionLink = motion.create(Link);
 
 export const Button = ({ 
   variant = 'primary', 
   size = 'md', 
+  href,
   children, 
   className = '', 
   ...props 
@@ -30,13 +35,23 @@ export const Button = ({
     lg: "px-20 py-7 text-base",
   };
 
+  const commonProps = {
+    whileHover: { y: -4, scale: 1.02 },
+    whileTap: { scale: 0.98 },
+    className: `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`,
+    ...props as any
+  };
+
+  if (href) {
+    return (
+      <MotionLink href={href} {...commonProps}>
+        {children}
+      </MotionLink>
+    );
+  }
+
   return (
-    <motion.button 
-      whileHover={{ y: -4, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
+    <motion.button {...commonProps}>
       {children}
     </motion.button>
   );

@@ -25,13 +25,13 @@ export const Testimonials = () => {
         </div>
 
         <div className="relative h-[400px] md:h-[300px] flex items-center justify-center">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 1.05, y: -20 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
               className="absolute max-w-4xl text-center space-y-10"
             >
               <p className="text-2xl md:text-3xl text-[var(--foreground)]/60 font-light leading-relaxed italic font-serif">
@@ -51,7 +51,17 @@ export const Testimonials = () => {
           </AnimatePresence>
         </div>
 
-        {/* No Indicators for a cleaner look */}
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-3 mt-16">
+          {TESTIMONIALS.map((_, i) => (
+            <div 
+              key={i} 
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === index ? 'bg-[var(--secondary)] w-8' : 'bg-[var(--primary)]/10 w-2'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

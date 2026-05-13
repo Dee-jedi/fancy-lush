@@ -4,8 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "../ui/Button";
 import { motion } from "framer-motion";
 import { PRODUCTS } from "@/constants";
+import { useCart } from "@/context/CartContext";
+import Link from 'next/link';
 
 export const Products = () => {
+  const { addToCart } = useCart();
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLDivElement>(null);
   const innerCarousel = useRef<HTMLDivElement>(null);
@@ -56,38 +59,47 @@ export const Products = () => {
             ref={innerCarousel}
             drag="x" 
             dragConstraints={{ right: 0, left: -width }}
+            dragElastic={0.2}
             whileTap={{ cursor: "grabbing" }}
-            className="flex gap-8 px-8"
+            className="flex gap-8 px-8 xl:px-[calc((100vw-1280px)/2+32px)] py-12 touch-pan-y"
           >
-            {PRODUCTS.map((product, i) => (
-              <motion.div 
-                key={i} 
-                className="min-w-[320px] md:min-w-[420px] bg-white rounded-[50px] overflow-hidden group border border-gray-100 hover:shadow-2xl transition-all duration-700 pointer-events-none sm:pointer-events-auto"
-              >
+            {PRODUCTS.map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              className="flex-none w-[280px] md:w-[360px] bg-white rounded-[40px] overflow-hidden group border border-gray-100/50 shadow-sm hover:shadow-xl transition-all duration-700 py-0"
+            >
+              <Link href={`/products/${product.id}`} className="block">
                 <div className="relative aspect-square overflow-hidden">
-                  <img 
-                    src={product.image} 
+                  <img
+                    src={product.image}
                     alt={product.name}
                     draggable="false"
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 select-none"
                   />
-                  <div className="absolute top-6 left-6">
-                    <span className="bg-white/80 backdrop-blur-md px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-[var(--primary)] border border-gray-100 shadow-sm">
+                  <div className="absolute top-5 left-5">
+                    <span className="bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[var(--primary)] border border-gray-100 shadow-sm">
                       {product.tag}
                     </span>
                   </div>
                 </div>
-                <div className="p-10 space-y-6">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-2xl font-serif font-medium text-[var(--primary)]">{product.name}</h3>
-                    <span className="text-[var(--secondary)] font-bold">{product.price}</span>
+
+                <div className="p-8">
+                  <div className="flex justify-between items-center gap-4">
+                    <h3 className="text-xl font-serif font-medium text-[var(--primary)] group-hover:text-[var(--secondary)] transition-colors duration-500 truncate">
+                      {product.name}
+                    </h3>
+                    <span className="text-[var(--secondary)] font-bold font-serif italic whitespace-nowrap">{product.price}</span>
                   </div>
-                  <Button variant="secondary" className="w-full py-4 text-[10px] tracking-widest uppercase rounded-2xl shadow-lg pointer-events-auto">
-                    Add to Cart
-                  </Button>
                 </div>
-              </motion.div>
-            ))}
+              </Link>
+            </motion.div>
+          ))}
+            {/* Spacer for right margin */}
+            <div className="min-w-[32px] md:min-w-[100px] h-full" />
           </motion.div>
         </motion.div>
 

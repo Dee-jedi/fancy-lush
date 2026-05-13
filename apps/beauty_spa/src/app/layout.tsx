@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description: "Luxury relaxation and clinical beauty treatments.",
 };
 
+import { CartProvider } from "@/context/CartContext";
+import { FloatingCart } from "@/components/cart/FloatingCart";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,8 +32,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${cormorant.variable} ${outfit.variable} h-full antialiased scroll-smooth`}
+      data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white">{children}</body>
+      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white">
+        <CartProvider>
+          {children}
+          <FloatingCart />
+        </CartProvider>
+      </body>
     </html>
   );
 }

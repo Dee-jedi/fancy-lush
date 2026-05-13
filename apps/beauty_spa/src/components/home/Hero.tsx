@@ -52,10 +52,10 @@ export const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 pt-4 justify-center lg:justify-start">
-            <Button variant="primary" size="md" className="w-full sm:w-auto shadow-xl">
+            <Button variant="primary" size="md" href="/services" className="w-full sm:w-auto shadow-xl">
               OUR SERVICES
             </Button>
-            <Button variant="outline" size="md" className="w-full sm:w-auto border-[var(--primary)]/40 text-[var(--primary)] font-bold hover:border-[var(--primary)] hover:bg-[var(--primary)]/5">
+            <Button variant="outline" size="md" href="/shop" className="w-full sm:w-auto border-[var(--primary)]/40 text-[var(--primary)] font-bold hover:border-[var(--primary)] hover:bg-[var(--primary)]/5">
               SHOP COLLECTION
             </Button>
           </div>
