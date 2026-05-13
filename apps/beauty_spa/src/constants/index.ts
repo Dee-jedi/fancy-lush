@@ -25,7 +25,7 @@ export const SERVICES = [
     fullDescription: "Wake up with perfect brows every day. Our semi-permanent microblading technique uses fine, precise strokes to mimic natural hair, creating full, beautifully shaped eyebrows that perfectly frame your face. Our certified specialists ensure a safe, comfortable experience with results that last 12-18 months.",
     price: "₦85,000",
     duration: "120 Mins",
-    image: "https://images.unsplash.com/photo-1595123550441-d373f9f92ba4?q=80&w=800&auto=format&fit=crop"
+    image: "/images/microblading.png"
   },
    { 
     id: "massage",
@@ -52,7 +52,7 @@ export const SERVICES = [
     fullDescription: "Enhance your eyes with our premium lash extensions. Whether you prefer a natural classic set or dramatic volume, our expert lash artists apply each individual lash with meticulous care. We use medical-grade adhesives and ultra-lightweight silk or mink fibers to ensure maximum comfort and a stunning, eye-opening effect.",
     price: "₦20,000 - ₦35,000",
     duration: "90 - 120 Mins",
-    image: "https://images.unsplash.com/photo-1576426863848-c28f6794951c?q=80&w=800&auto=format&fit=crop"
+    image: "/images/lashes.png"
   },
   { 
     id: "hair",
