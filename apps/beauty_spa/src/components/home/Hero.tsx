@@ -17,7 +17,7 @@ export const Hero = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
           className="space-y-8 md:space-y-10 text-center lg:text-left"
         >
           <div className="space-y-4 md:space-y-6">
@@ -64,7 +64,7 @@ export const Hero = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="relative hidden lg:block"
         >
           <div className="relative aspect-[4/5] rounded-[50px] overflow-hidden border border-[var(--primary)]/10 shadow-2xl group">

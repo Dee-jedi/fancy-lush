@@ -31,7 +31,7 @@ export const Testimonials = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.05, y: -20 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
               className="absolute max-w-4xl text-center space-y-10"
             >
               <p className="text-2xl md:text-3xl text-[var(--foreground)]/60 font-light leading-relaxed italic font-serif">

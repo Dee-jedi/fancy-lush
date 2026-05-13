@@ -19,7 +19,7 @@ const StatItem = ({ value, label }: StatItemProps) => {
   
   const count = useMotionValue(0);
   const displayValue = useTransform(count, (latest) => 
-    hasDecimal ? latest.toFixed(1) : Math.round(latest)
+    hasDecimal ? latest.toFixed(1) : Math.round(latest).toString()
   );
 
   React.useEffect(() => {
