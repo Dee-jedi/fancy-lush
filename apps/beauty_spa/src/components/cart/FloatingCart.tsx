@@ -13,8 +13,8 @@ export const FloatingCart = () => {
   // Always show on Shop and Product pages, otherwise only if items > 0
   const isShopOrProductPage = pathname === '/shop' || pathname.startsWith('/products/');
 
-  // Only show on Shop and Product pages, and only if there are items in the cart
-  if (!isShopOrProductPage || totalItems === 0 || pathname === '/cart') return null;
+  // Always show on Shop and Product pages, otherwise hidden (e.g. Home page)
+  if (!isShopOrProductPage || pathname === '/cart') return null;
 
   return (
     <AnimatePresence>
