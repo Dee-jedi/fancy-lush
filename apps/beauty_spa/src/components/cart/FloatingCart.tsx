@@ -22,7 +22,7 @@ export const FloatingCart = () => {
         initial={{ opacity: 0, scale: 0.5, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.5, y: 20 }}
-        className="fixed bottom-10 right-10 z-[100]"
+        className="fixed bottom-10 right-10 z-[50]"
       >
           <Link href="/cart" className="group block relative">
             <motion.div 
