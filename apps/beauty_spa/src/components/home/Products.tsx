@@ -3,15 +3,40 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "../ui/Button";
 import { motion } from "framer-motion";
-import { PRODUCTS } from "@/constants";
 import { useCart } from "@/context/CartContext";
 import Link from 'next/link';
+import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
+import { db } from '@lush/firebase';
+import { formatPrice } from '@/utils/formatPrice';
 
 export const Products = () => {
   const { addToCart } = useCart();
   const [width, setWidth] = useState(0);
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const carousel = useRef<HTMLDivElement>(null);
   const innerCarousel = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const q = query(
+          collection(db, 'products'),
+          orderBy('createdAt', 'desc'),
+          limit(6)
+        );
+        const querySnapshot = await getDocs(q);
+        const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error fetching landing products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const measure = () => {
@@ -26,7 +51,7 @@ export const Products = () => {
       observer.disconnect();
       clearTimeout(timer);
     };
-  }, []);
+  }, [products]);
 
   return (
     <section id="products" className="py-40 bg-[#faf9f6] overflow-hidden">
@@ -63,7 +88,15 @@ export const Products = () => {
             whileTap={{ cursor: "grabbing" }}
             className="flex gap-8 px-8 xl:px-[calc((100vw-1280px)/2+32px)] py-12 touch-pan-y"
           >
-            {PRODUCTS.map((product, index) => (
+            {loading ? (
+              <div className="flex gap-8 px-8">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="flex-none w-[280px] md:w-[360px] aspect-square bg-gray-100 rounded-[40px] animate-pulse" />
+                ))}
+              </div>
+            ) : products.length === 0 ? (
+              <div className="w-full text-center py-20 text-gray-400 font-serif italic">New arrivals coming soon.</div>
+            ) : products.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0 }}
@@ -78,7 +111,8 @@ export const Products = () => {
                     src={product.image}
                     alt={product.name}
                     draggable="false"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 select-none"
+                    loading="lazy"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 select-none"
                   />
                   <div className="absolute top-5 left-5">
                     <span className="bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[var(--primary)] border border-gray-100 shadow-sm">
@@ -92,7 +126,9 @@ export const Products = () => {
                     <h3 className="text-xl font-serif font-medium text-[var(--primary)] group-hover:text-[var(--secondary)] transition-colors duration-500 truncate">
                       {product.name}
                     </h3>
-                    <span className="text-[var(--secondary)] font-bold font-serif italic whitespace-nowrap">{product.price}</span>
+                    <span className="text-[var(--secondary)] font-bold font-serif italic whitespace-nowrap tracking-tight">
+                      {formatPrice(product.price)}
+                    </span>
                   </div>
                 </div>
               </Link>

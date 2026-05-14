@@ -4,17 +4,23 @@ import React, { useState } from 'react';
 import { Button } from "../ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { user, role, signInWithGoogle } = useAuth();
 
   const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'Cosmetics', href: '/shop' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '/about' },
   ];
+
+  const mobileMenuItems = user && role === 'admin'
+    ? [...menuItems, { name: 'Dashboard', href: '/admin/dashboard' }]
+    : menuItems;
 
   // Disable scroll when menu is open
   React.useEffect(() => {
@@ -112,8 +118,8 @@ export const Header = () => {
             >
               <div className="relative h-full flex flex-col pt-4">
 
-                <div className="mt-8 flex flex-col gap-10">
-                {menuItems.map((item, i) => {
+                <div className={`mt-8 flex flex-col ${user && role === 'admin' ? 'gap-6' : 'gap-10'}`}>
+                {mobileMenuItems.map((item, i) => {
                   const isActive = pathname === item.href;
                   return (
                     <div key={item.name} className="flex flex-col items-start gap-1">
@@ -123,7 +129,7 @@ export const Header = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1, duration: 0.5 }}
                         onClick={() => setIsOpen(false)}
-                        className={`text-4xl font-serif ${isActive ? 'text-[var(--primary)]' : 'text-[var(--foreground)]/50'} hover:text-[var(--primary)] transition-all duration-300 tracking-tight`}
+                        className={`${user && role === 'admin' ? 'text-3xl' : 'text-4xl'} font-serif ${isActive ? 'text-[var(--primary)]' : 'text-[var(--foreground)]/50'} hover:text-[var(--primary)] transition-all duration-300 tracking-tight`}
                       >
                         {item.name}
                       </motion.a>
@@ -151,7 +157,16 @@ export const Header = () => {
                     </Button>
                   </motion.div>
                   <div className="mt-12 pt-8 border-t border-gray-100 text-center">
-                    <p className="text-[10px] tracking-[0.2em] font-black uppercase text-gray-300">Fancylush Beauty & Spa</p>
+                    {user ? (
+                      <p className="text-[10px] tracking-[0.2em] font-black uppercase text-gray-300">Fancylush Beauty & Spa</p>
+                    ) : (
+                      <p 
+                        onClick={signInWithGoogle}
+                        className="text-[10px] tracking-[0.2em] font-black uppercase text-gray-300 cursor-pointer hover:text-gray-400 transition-colors"
+                      >
+                        SIGNIN
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

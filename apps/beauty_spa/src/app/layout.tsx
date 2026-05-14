@@ -5,14 +5,14 @@ import "./globals.css";
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700"],
   style: ["normal", "italic"],
 });
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "600", "800"],
 });
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 };
 
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { FloatingCart } from "@/components/cart/FloatingCart";
 
 export default function RootLayout({
@@ -35,10 +36,12 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white">
-        <CartProvider>
-          {children}
-          <FloatingCart />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            {children}
+            <FloatingCart />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

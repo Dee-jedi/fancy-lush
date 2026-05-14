@@ -1,15 +1,36 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/Button";
-import { PRODUCTS } from "@/constants";
 import { useCart } from "@/context/CartContext";
 import Link from 'next/link';
+import { collection, query, orderBy, getDocs } from 'firebase/firestore';
+import { db } from '@lush/firebase';
+import { formatPrice } from '@/utils/formatPrice';
 
 export default function ShopPage() {
   const { addToCart } = useCart();
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#faf9f6]">
       <Header />
@@ -46,7 +67,13 @@ export default function ShopPage() {
       {/* Product Grid */}
       <section className="py-24 px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
-          {PRODUCTS.map((product, index) => (
+          {loading ? (
+            <div className="col-span-full flex justify-center py-20">
+              <div className="w-12 h-12 border-4 border-gray-100 border-t-[var(--secondary)] rounded-full animate-spin"></div>
+            </div>
+          ) : products.length === 0 ? (
+            <div className="col-span-full text-center py-20 text-gray-400 font-serif text-xl italic">No products available yet.</div>
+          ) : products.map((product, index) => (
             <motion.div 
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
@@ -59,6 +86,7 @@ export default function ShopPage() {
                   <img 
                     src={product.image} 
                     alt={product.name}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                   {/* Quick Add to Cart Button */}
@@ -82,7 +110,7 @@ export default function ShopPage() {
                 <div className="space-y-2 text-center">
                   <p className="text-[10px] tracking-[0.2em] uppercase font-black text-[var(--secondary)]">{product.tag}</p>
                   <h3 className="text-xl font-serif text-[var(--primary)]">{product.name}</h3>
-                  <p className="font-serif italic text-[var(--foreground)]/60">{product.price}</p>
+                  <p className="font-serif italic text-[var(--foreground)]/60">{formatPrice(product.price)}</p>
                 </div>
               </Link>
             </motion.div>

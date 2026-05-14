@@ -71,6 +71,7 @@ export const Services = () => {
                     <img 
                       src={service.image} 
                       alt={service.name}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/90 via-[var(--primary)]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
