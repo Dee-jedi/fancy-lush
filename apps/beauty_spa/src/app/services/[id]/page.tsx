@@ -3,16 +3,18 @@ import { SPECIALISTS } from "@/constants/specialists";
 import { Metadata } from 'next';
 import ServiceDetailClient from './ServiceDetailClient';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const service = SERVICES.find(s => s.id === params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const service = SERVICES.find(s => s.id === id);
   return {
     title: `${service?.name || 'Service'} | Luxury Spa Experience`,
     description: service?.fullDescription.substring(0, 160) || 'Indulge in our premium spa treatments.',
   };
 }
 
-export default function ServicePage({ params }: { params: { id: string } }) {
-  const service = SERVICES.find(s => s.id === params.id);
+export default async function ServicePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const service = SERVICES.find(s => s.id === id);
 
   if (!service) {
     return (
@@ -22,7 +24,7 @@ export default function ServicePage({ params }: { params: { id: string } }) {
     );
   }
 
-  const relatedServices = SERVICES.filter(s => s.id !== params.id).slice(0, 3);
+  const relatedServices = SERVICES.filter(s => s.id !== id).slice(0, 3);
 
   return (
     <ServiceDetailClient 
