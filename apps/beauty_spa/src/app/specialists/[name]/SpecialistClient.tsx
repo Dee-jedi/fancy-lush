@@ -95,7 +95,10 @@ export default function SpecialistClient({ specialist }: { specialist: Specialis
                 </p>
               </div>
 
-              <Button href={`/book?service=massage&specialist=${specialist.id}`} className="w-full py-6 rounded-2xl text-xs tracking-[0.4em] font-black uppercase shadow-xl">
+              <Button 
+                href={`/book?service=massage&specialist=${specialist.id}`} 
+                className="w-full py-6 rounded-2xl text-[10px] tracking-[0.2em] md:tracking-[0.3em] font-black uppercase shadow-xl whitespace-nowrap overflow-hidden text-ellipsis"
+              >
                 Book with {specialist.name.split(' ')[0]}
               </Button>
             </motion.div>
