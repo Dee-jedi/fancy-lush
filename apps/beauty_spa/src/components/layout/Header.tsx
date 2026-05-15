@@ -13,6 +13,7 @@ export const Header = () => {
 
   const menuItems = [
     { name: 'Home', href: '/' },
+    { name: 'Spa View', href: '/spa-view' },
     { name: 'Services', href: '/services' },
     { name: 'Cosmetics', href: '/shop' },
     { name: 'About', href: '/about' },
@@ -118,7 +119,7 @@ export const Header = () => {
             >
               <div className="relative h-full flex flex-col pt-4">
 
-                <div className={`mt-8 flex flex-col ${user && role === 'admin' ? 'gap-6' : 'gap-10'}`}>
+                <div className="mt-8 flex flex-col gap-6">
                 {mobileMenuItems.map((item, i) => {
                   const isActive = pathname === item.href;
                   return (
@@ -129,7 +130,7 @@ export const Header = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1, duration: 0.5 }}
                         onClick={() => setIsOpen(false)}
-                        className={`${user && role === 'admin' ? 'text-3xl' : 'text-4xl'} font-serif ${isActive ? 'text-[var(--primary)]' : 'text-[var(--foreground)]/50'} hover:text-[var(--primary)] transition-all duration-300 tracking-tight`}
+                        className={`text-3xl font-serif ${isActive ? 'text-[var(--primary)]' : 'text-[var(--foreground)]/50'} hover:text-[var(--primary)] transition-all duration-300 tracking-tight`}
                       >
                         {item.name}
                       </motion.a>
@@ -146,7 +147,7 @@ export const Header = () => {
                 })}
               </div>
 
-                <div className="pb-12 mt-auto">
+                <div className="pb-4 mt-auto">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
