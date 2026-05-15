@@ -90,6 +90,7 @@ export const Gallery = () => {
               src={image.src}
               alt={image.title}
               fill
+              priority={index < 2}
               className="object-cover transition-transform duration-[1.5s] group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, 50vw"
             />

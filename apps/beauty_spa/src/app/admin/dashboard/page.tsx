@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { Header } from '@/components/layout/Header';
 import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
-import { db } from '@lush/firebase';
+import { db } from '@/lib/firebase';
 import { AddProductModal } from '@/components/admin/AddProductModal';
+import { ReviewList } from '@/components/admin/ReviewList';
 import { motion } from 'framer-motion';
 
 export default function DashboardPage() {
@@ -29,16 +30,13 @@ export default function DashboardPage() {
   const fetchProductCount = async () => {
     setFetching(true);
     try {
-      // Try the counter document first (1 read)
       const counterDoc = await getDoc(doc(db, '_meta', 'productCount'));
       if (counterDoc.exists()) {
         setProductCount(counterDoc.data().count || 0);
       } else {
-        // Fallback: count all docs and seed the counter doc
         const querySnapshot = await getDocs(collection(db, 'products'));
         const count = querySnapshot.size;
         setProductCount(count);
-        // Seed counter doc so future loads only need 1 read
         await setDoc(doc(db, '_meta', 'productCount'), { count });
       }
     } catch (error) {
@@ -58,37 +56,49 @@ export default function DashboardPage() {
     <main className="min-h-screen bg-[#faf9f6] text-gray-800">
       <Header />
       
-      <section className="pt-48 pb-20 px-8">
-        <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-[var(--secondary)] text-xs tracking-[0.4em] font-black uppercase"
-          >
-            Admin Dashboard
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-serif font-medium text-[var(--primary)] leading-tight"
-          >
-            Store <span className="italic font-light text-[var(--secondary)]">Overview</span>
-          </motion.h1>
+      <section className="pt-48 pb-32 px-8">
+        <div className="max-w-7xl mx-auto space-y-24">
+          
+          {/* Header Section */}
+          <div className="flex flex-col items-center text-center space-y-8">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-[var(--secondary)] text-xs tracking-[0.4em] font-black uppercase"
+            >
+              Concierge Control
+            </motion.span>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-7xl font-serif font-medium text-[var(--primary)] leading-tight"
+            >
+              Business <span className="italic font-light text-[var(--secondary)]">Intelligence</span>
+            </motion.h1>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-12 p-12 bg-white rounded-[40px] shadow-sm border border-gray-100 flex flex-col items-center justify-center w-full max-w-md"
-          >
-            <p className="text-sm tracking-widest uppercase font-medium text-gray-400 mb-2">Total Products Listed</p>
-            {fetching ? (
-               <div className="w-16 h-16 border-4 border-gray-100 border-t-[var(--secondary)] rounded-full animate-spin"></div>
-            ) : (
-              <span className="text-7xl font-serif text-[var(--primary)]">{productCount}</span>
-            )}
-          </motion.div>
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 gap-8 w-full max-w-md mt-12">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="p-10 bg-white rounded-[40px] shadow-sm border border-gray-100 flex flex-col items-center justify-center"
+              >
+                <p className="text-[10px] tracking-widest uppercase font-black text-gray-400 mb-2">Total Products Listed</p>
+                {fetching ? (
+                  <div className="w-10 h-10 border-2 border-gray-100 border-t-[var(--secondary)] rounded-full animate-spin"></div>
+                ) : (
+                  <span className="text-6xl font-serif text-[var(--primary)]">{productCount}</span>
+                )}
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Main Content: Reviews List */}
+          <div className="max-w-5xl mx-auto">
+            <ReviewList />
+          </div>
         </div>
       </section>
 

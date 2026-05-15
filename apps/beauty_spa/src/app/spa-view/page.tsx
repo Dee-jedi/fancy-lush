@@ -96,8 +96,8 @@ export default function SpaView() {
           <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
             <h2 className="text-4xl md:text-6xl font-serif text-white mb-8">Ready to Experience It Yourself?</h2>
             <p className="text-white/70 text-lg mb-12 font-medium">Book your personalized treatment today and discover the Fancylush difference.</p>
-            <Button href="/book" variant="secondary" size="lg">
-              BOOK AN APPOINTMENT
+            <Button href="/book" variant="secondary">
+              BOOK A TREATMENT 
             </Button>
           </div>
         </section>
