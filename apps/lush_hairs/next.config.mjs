@@ -1,11 +1,11 @@
-import type { NextConfig } from "next";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // @ts-ignore - Next.js specifically requested this in the terminal to fix workspace detection
   outputFileTracingRoot: path.join(__dirname, "../../"),
   allowedDevOrigins: ["10.128.0.203"],
