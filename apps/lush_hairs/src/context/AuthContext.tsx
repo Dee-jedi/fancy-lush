@@ -29,9 +29,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser: User | null) => {
       setUser(currentUser);
-      if (currentUser) {
+      if (currentUser && db) {
         try {
           // Fetch user role from Firestore
           const userDocRef = doc(db, 'users', currentUser.uid);
@@ -63,6 +68,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signInWithGoogle = async () => {
+    if (!auth) return;
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
@@ -72,6 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signOut = async () => {
+    if (!auth) return;
     try {
       await firebaseSignOut(auth);
     } catch (error) {
