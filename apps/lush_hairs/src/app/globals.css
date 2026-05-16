@@ -1,36 +1,38 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #fb7185;
+  --color-secondary: #8b5cf6;
+  --color-background: #030712;
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-outfit), sans-serif;
+}
+
 @layer base {
   :root {
-    --background: #000000;
+    --background: #08080b;
     --foreground: #ffffff;
-    --primary: #ec4899; /* Pink-500 */
-    --primary-foreground: #ffffff;
-    --secondary: #1f2937; /* Gray-800 */
-    --secondary-foreground: #f9fafb;
-    --accent: #d1d5db; /* Gray-300 */
-    --accent-foreground: #111827;
-    --radius: 0rem; /* Modern sharp edges */
-  }
-
-  .dark {
-    --background: #000000;
-    --foreground: #ffffff;
-    --primary: #ec4899;
-    --primary-foreground: #000000;
-    --secondary: #1f2937;
-    --secondary-foreground: #f9fafb;
-    --accent: #d1d5db;
-    --accent-foreground: #111827;
+    --primary: #fb7185;
+    --primary-hover: #f43f5e;
+    --secondary: #8b5cf6;
+    --accent: #fcd34d;
+    --card: #111116;
+    --border: rgba(255, 255, 255, 0.08);
   }
 }
 
 @layer base {
   * {
-    border-color: var(--secondary);
+    border-color: rgba(255, 255, 255, 0.05);
   }
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
   }
 }
