@@ -16,8 +16,29 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Fancylush Beauty & Spa",
-  description: "Luxury relaxation and clinical beauty treatments.",
+  title: "Fancylush Beauty & Spa | Luxury Skincare, Massages & Body Care in Ilorin, Kwara",
+  description: "Welcome to Fancylush Beauty & Spa in Ilorin, Kwara State. Experience organic face lift treatments, clinical skincare, advanced body massage therapies, manicures, and complete luxury relaxation.",
+  keywords: [
+    "Spa in Ilorin", 
+    "Spa in Kwara", 
+    "Massage in Ilorin", 
+    "Massage in Kwara", 
+    "Beauty spa Ilorin", 
+    "Skincare clinic Kwara", 
+    "Best facial Ilorin",
+    "Fancylush Spa", 
+    "Body scrub Kwara", 
+    "Bridal shower spa Ilorin", 
+    "Relaxation center Ilorin"
+  ],
+  authors: [{ name: "Fancylush Beauty & Spa" }],
+  openGraph: {
+    title: "Fancylush Beauty & Spa | Luxury Skincare, Massages & Body Care in Ilorin, Kwara",
+    description: "Welcome to the ultimate sanctuary in Ilorin. Renew your body with organic skincare, clinical therapy, and professional massages.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Fancylush Beauty & Spa",
+  }
 };
 
 import { CartProvider } from "@/context/CartContext";

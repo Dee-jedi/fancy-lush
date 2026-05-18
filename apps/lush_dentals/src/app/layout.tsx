@@ -15,8 +15,29 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Lush Dentals | Transforming More Than Smiles",
-  description: "Professional dental care for a healthier, beautiful smile that lasts a lifetime.",
+  title: "Lush Dentals | Best Dentist, Teeth Whitening & Cosmetic Dental Clinic in Ilorin, Kwara",
+  description: "Welcome to Lush Dentals in Ilorin, Kwara State. Our expert dentists offer professional teeth cleaning, cosmetic dentistry, emergency dental care, dental implants, teeth whitening, and general oral surgery in a comfortable clinic.",
+  keywords: [
+    "Dentist in Ilorin", 
+    "Dentist in Kwara", 
+    "Dental clinic in Ilorin", 
+    "Dental clinic in Kwara", 
+    "Teeth whitening Ilorin", 
+    "Emergency dentist Kwara", 
+    "Tooth extraction Ilorin",
+    "Lush Dentals", 
+    "Best dentist Kwara", 
+    "Cosmetic dentistry Ilorin", 
+    "Teeth cleaning price Kwara"
+  ],
+  authors: [{ name: "Lush Dentals Clinic" }],
+  openGraph: {
+    title: "Lush Dentals | Best Dentist, Teeth Whitening & Dental Clinic in Ilorin, Kwara",
+    description: "Experience exceptional dental care in Ilorin. Professional teeth whitening, cleaning, implants, and emergency services for healthier smiles.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Lush Dentals Clinic",
+  }
 };
 
 export default function RootLayout({

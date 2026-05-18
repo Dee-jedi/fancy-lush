@@ -17,8 +17,29 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Lush Hairs",
-  description: "Premium extensions and styling for the bold.",
+  title: "Lush Hairs & Spa | Premium Hair Extensions & Beauty Spa in Ilorin, Kwara",
+  description: "Experience ultimate luxury at Lush Hairs & Spa in Ilorin, Kwara State. Sourcing 100% raw human hair, custom wig installations, HD lace frontals, expert massage therapies, and premium beauty services.",
+  keywords: [
+    "Spa in Ilorin", 
+    "Spa in Kwara", 
+    "Massage in Ilorin", 
+    "Massage in Kwara", 
+    "Hair salon in Ilorin", 
+    "Raw human hair Kwara", 
+    "Lace frontals Ilorin",
+    "Lush Hairs", 
+    "Wig installation Kwara", 
+    "Beauty salon Ilorin", 
+    "Dentals and skincare Kwara"
+  ],
+  authors: [{ name: "Lush Hairs & Spa" }],
+  openGraph: {
+    title: "Lush Hairs & Spa | Premium Hair Extensions & Beauty Spa in Ilorin, Kwara",
+    description: "Welcome to the ultimate luxury destination in Ilorin. Experience raw single-donor hair extensions and expert body massage therapies.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Lush Hairs Boutique & Spa",
+  }
 };
 
 export default function RootLayout({

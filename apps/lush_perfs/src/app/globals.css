@@ -1,36 +1,57 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
 @layer base {
   :root {
-    --background: #fffbeb; /* Amber-50 */
-    --foreground: #451a03;
-    --primary: #b45309; /* Amber-700 */
-    --primary-foreground: #fffbeb;
-    --secondary: #fef3c7; /* Amber-100 */
-    --secondary-foreground: #92400e;
-    --accent: #d97706; /* Amber-600 */
-    --accent-foreground: #fffbeb;
-    --radius: 1rem; /* Very rounded luxury feel */
-  }
-
-  .dark {
-    --background: #451a03;
-    --foreground: #fffbeb;
-    --primary: #d97706;
-    --primary-foreground: #451a03;
-    --secondary: #92400e;
-    --secondary-foreground: #fef3c7;
-    --accent: #b45309;
-    --accent-foreground: #fffbeb;
+    --background: #050404; /* Sleek Midnight Black */
+    --foreground: #ffffff;
+    --primary: #c89666; /* Elegant Bronze Gold */
+    --primary-hover: #b58353;
+    --secondary: #f5d6c6; /* Soft Warm Amber */
+    --accent: #8e5e38; /* Rich Copper-Brown Accent */
+    --card: #110c0a; /* Very Dark Cocoa Card - subtle near-black! */
+    --border: rgba(229, 186, 160, 0.05); /* Soft Bronze Tinted Border */
+    --radius: 2.5rem;
   }
 }
 
 @layer base {
-  * {
-    border-color: var(--secondary);
-  }
   body {
-    background-color: var(--background);
+    /* Spotlight Gradient: warm subtle espresso center fading into deep midnight black edges */
+    background: radial-gradient(circle at 50% 20%, #1a100c 0%, #050404 100%) no-repeat fixed;
     color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Hide scrollbars globally but keep functionality */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none !important;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+  }
+}
+
+/* Luxury card glows & transitions */
+.glow-card {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 80px -20px rgba(200, 150, 102, 0.12);
+  border-color: rgba(229, 186, 160, 0.2) !important;
 }
