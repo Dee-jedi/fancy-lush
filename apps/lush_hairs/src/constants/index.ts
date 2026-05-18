@@ -6,7 +6,7 @@ export const PRODUCTS = [
     tag: "Best Seller",
     description: "Premium 24-inch virgin human hair with natural luster.",
     fullDescription: "Experience the ultimate volume and bounce with our Midnight Body Wave. Sourced from 100% raw virgin human hair, these extensions offer a seamless blend and a natural, radiant luster. Perfect for versatile styling, it can be straightened or curled while maintaining its luxurious texture.",
-    image: "https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=800&auto=format&fit=crop"
   },
   { 
     id: "rose-gold-frontal",

@@ -3,6 +3,7 @@ import { Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
+import { SearchProvider } from "@/context/SearchContext";
 import { FloatingCart } from "@/components/cart/FloatingCart";
 
 const playfair = Playfair_Display({
@@ -33,8 +34,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white">
         <AuthProvider>
           <CartProvider>
-            {children}
-            <FloatingCart />
+            <SearchProvider>
+              {children}
+              <FloatingCart />
+            </SearchProvider>
           </CartProvider>
         </AuthProvider>
       </body>

@@ -8,6 +8,7 @@ import { Button } from "@lush/ui";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isShopPage = pathname === '/shop';
 
   const menuItems = [
     { name: 'Home', href: '/' },
@@ -32,7 +33,9 @@ export const Header = () => {
       <motion.header 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 w-full z-50 bg-[#030712]/60 backdrop-blur-xl h-24 border-b border-white/5 shadow-sm flex items-center"
+        className={`fixed top-0 w-full z-50 bg-[#030712]/60 backdrop-blur-xl h-24 border-b border-white/5 shadow-sm items-center ${
+          isShopPage ? 'hidden lg:flex' : 'flex'
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-full w-full flex items-center justify-between">
           <motion.a 

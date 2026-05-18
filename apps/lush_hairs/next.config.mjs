@@ -9,7 +9,7 @@ const nextConfig = {
   // @ts-ignore - Next.js specifically requested this in the terminal to fix workspace detection
   outputFileTracingRoot: path.join(__dirname, "../../"),
   turbopack: {}, // Required for Next.js 16 when using custom webpack config
-  allowedDevOrigins: ["10.128.0.203"],
+  allowedDevOrigins: ["10.128.0.203", "10.128.0.16"],
   images: {
     remotePatterns: [
       {
