@@ -4,7 +4,7 @@ export const SPECIALISTS = [
     name: "Ibiwoye Blessing",
     specialty: "Spa Therapist",
     rating: 4.9,
-    image: "/images/specialist-1.png",
+    image: "/images/specialist-1.jpg",
     bio: "With years of professional training in luxury wellness, Blessing is an expert in full-body tension relief and relaxation, ensuring absolute rejuvenation for every guest.",
     reviews: [
       { user: "Tunde W.", rating: 5, comment: "Omo, Blessing has hands of gold. That massage reset my entire system after a long week." },
@@ -20,7 +20,7 @@ export const SPECIALISTS = [
     name: "Adedoyin Mary",
     specialty: "Spa Therapist",
     rating: 5.0,
-    image: "/images/specialist-2.png",
+    image: "/images/specialist-2.jpg",
     bio: "Mary combines professional massage techniques with an intuitive sense of touch, creating a customized experience of pure physical and mental bliss.",
     reviews: [
       { user: "Kemi S.", rating: 5, comment: "The massage session with Mary was so zen. Very calming." },
@@ -36,7 +36,7 @@ export const SPECIALISTS = [
     name: "Mutiu Olamilekan",
     specialty: "Spa Therapist",
     rating: 4.8,
-    image: "/images/specialist-3.png",
+    image: "/images/specialist-3.jpg",
     bio: "Mutiu specializes in full-body massage therapy and muscular tension relief, ensuring each client experiences ultimate physical recovery and tranquility.",
     reviews: [
       { user: "Damilola K.", rating: 5, comment: "Finding a good therapist in Ilorin is hard. Mutiu is a pro." },
