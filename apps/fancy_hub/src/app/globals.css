@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #030303; /* Deepest Obsidian Black */
+    --foreground: #ffffff;
+    --primary: #e5e7eb; /* Brushed Platinum Silver */
+    --primary-hover: #ffffff;
+    --secondary: #9ca3af; /* Metallic Steel Grey */
+    --border: rgba(255, 255, 255, 0.04);
+    --radius: 2.5rem;
+  }
+}
+
+@layer base {
+  body {
+    /* Cool Spotlight Gradient: subtle royal-indigo center fading into deepest black edges */
+    background: radial-gradient(circle at 50% 25%, #0d0b16 0%, #030303 100%) no-repeat fixed;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Hide scrollbars globally but keep functionality */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none !important;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+  }
+}
+
+/* High-end ambient glass cards */
+.glass-panel {
+  background: rgba(10, 10, 12, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px border rgba(255, 255, 255, 0.03);
+}
+
+.glow-card {
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
