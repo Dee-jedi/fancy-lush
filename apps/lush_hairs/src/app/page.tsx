@@ -22,7 +22,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img
             initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.25 }}
+            animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
             src="/hero-model.png"
             className="w-full h-full object-cover object-center lg:object-right mix-blend-luminosity grayscale"

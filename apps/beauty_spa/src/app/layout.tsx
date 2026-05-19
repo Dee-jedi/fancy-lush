@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { FloatingCart } from "@/components/cart/FloatingCart";
+import { SearchProvider } from "@/context/SearchContext";
 
 export default function RootLayout({
   children,
@@ -59,8 +60,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white">
         <AuthProvider>
           <CartProvider>
-            {children}
-            <FloatingCart />
+            <SearchProvider>
+              {children}
+              <FloatingCart />
+            </SearchProvider>
           </CartProvider>
         </AuthProvider>
       </body>
