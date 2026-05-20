@@ -3,6 +3,8 @@ import { db } from '@lush/firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { sendEmailReminder } from '@/lib/emailjs';
 
+export const dynamic = 'force-dynamic';
+
 // SECURE CRON ENDPOINT
 export async function GET(request: Request) {
   // 1. Verify Authorization Header
