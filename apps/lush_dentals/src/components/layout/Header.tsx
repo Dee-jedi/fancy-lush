@@ -4,16 +4,23 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/Button";
+import { useAuth } from "@/context/AuthContext";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { user, role, signInWithGoogle, signOut } = useAuth();
 
   const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
   ];
+
+  // If user is admin, append Dashboard to navigation
+  const activeMenuItems = user && role === 'admin'
+    ? [...menuItems, { name: 'Dashboard', href: '/admin/dashboard' }]
+    : menuItems;
 
   // Disable scroll when menu is open
   useEffect(() => {
@@ -50,7 +57,7 @@ export const Header = () => {
           
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-12 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--foreground)]/60">
-            {menuItems.map((item) => (
+            {activeMenuItems.map((item) => (
               <motion.a 
                 key={item.name}
                 href={item.href} 
@@ -74,7 +81,39 @@ export const Header = () => {
               </Button>
             </div>
 
-            {/* Hamburger Button - EXACT COPY from Beauty Spa logic */}
+            {/* Desktop Auth Button */}
+            <div className="hidden lg:block z-[80]">
+              {user ? (
+                <div className="flex items-center gap-3">
+                  {user.photoURL ? (
+                    <img 
+                      src={user.photoURL} 
+                      alt={user.displayName || "User"} 
+                      className="w-8 h-8 rounded-full border border-emerald-500/20 shadow-sm" 
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+                      {(user.displayName || user.email || "U")[0].toUpperCase()}
+                    </div>
+                  )}
+                  <button 
+                    onClick={signOut} 
+                    className="text-[10px] tracking-widest font-bold uppercase text-[var(--foreground)]/40 hover:text-rose-500 transition-colors cursor-pointer focus:outline-none"
+                  >
+                    SIGN OUT
+                  </button>
+                </div>
+              ) : (
+                <button 
+                  onClick={signInWithGoogle}
+                  className="text-[10px] tracking-widest font-bold uppercase text-emerald-600 hover:text-emerald-700 transition-colors cursor-pointer focus:outline-none"
+                >
+                  SIGN IN
+                </button>
+              )}
+            </div>
+            
+            {/* Hamburger Button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="z-[80] w-12 h-12 flex flex-col items-center justify-center gap-1.5 focus:outline-none lg:hidden group"
@@ -96,7 +135,7 @@ export const Header = () => {
         </div>
       </motion.header>
 
-      {/* Mobile Menu / Drawer - EXACT COPY from Beauty Spa logic */}
+      {/* Mobile Menu / Drawer */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -116,7 +155,7 @@ export const Header = () => {
             >
               <div className="relative h-full flex flex-col pt-4">
                 <div className="mt-8 flex flex-col gap-10">
-                  {menuItems.map((item, i) => {
+                  {activeMenuItems.map((item, i) => {
                     const isActive = pathname === item.href;
                     return (
                       <div key={item.name} className="flex flex-col items-start gap-1">
@@ -153,8 +192,44 @@ export const Header = () => {
                       BOOK APPOINTMENT
                     </Button>
                   </motion.div>
-                  <div className="mt-12 pt-8 border-t border-gray-100 text-center">
-                    <p className="text-[10px] tracking-[0.2em] font-black uppercase text-gray-300">Lush Dentals Clinic</p>
+                  
+                  {/* Mobile Drawer Auth Actions */}
+                  <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col items-center gap-2">
+                    {user ? (
+                      <>
+                        <div className="flex items-center gap-2">
+                          {user.photoURL && (
+                            <img 
+                              src={user.photoURL} 
+                              alt={user.displayName || "User"} 
+                              className="w-6 h-6 rounded-full border border-emerald-500/20" 
+                            />
+                          )}
+                          <span className="text-[10px] tracking-[0.1em] font-bold text-gray-500 uppercase">
+                            {user.displayName || user.email}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            signOut();
+                            setIsOpen(false);
+                          }}
+                          className="text-[9px] tracking-[0.2em] font-black uppercase text-rose-500 hover:text-rose-600 transition-colors mt-1 cursor-pointer focus:outline-none"
+                        >
+                          SIGN OUT
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          signInWithGoogle();
+                          setIsOpen(false);
+                        }}
+                        className="text-[10px] tracking-[0.2em] font-black uppercase text-emerald-600 hover:text-emerald-700 transition-colors cursor-pointer focus:outline-none"
+                      >
+                        SIGN IN
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
