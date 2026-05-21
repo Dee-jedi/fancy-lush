@@ -165,14 +165,14 @@ export const Header = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: i * 0.1, duration: 0.5 }}
                           onClick={() => setIsOpen(false)}
-                          className={`text-4xl font-serif ${isActive ? 'text-[var(--primary)]' : 'text-[var(--foreground)]/50'} hover:text-[var(--primary)] transition-all duration-300 tracking-tight`}
+                          className={`text-2xl md:text-3xl font-serif font-bold uppercase tracking-wider ${isActive ? 'text-[var(--primary)]' : 'text-[var(--foreground)]/40'} hover:text-[var(--primary)] transition-all duration-300`}
                         >
                           {item.name}
                         </motion.a>
                         {isActive && (
                           <motion.div 
                             layoutId="activeIndicator"
-                            className="w-12 h-1 bg-[var(--secondary)] rounded-full mt-1"
+                            className="w-8 h-[2px] bg-[var(--secondary)] rounded-full mt-1"
                             initial={{ opacity: 0, scaleX: 0 }}
                             animate={{ opacity: 1, scaleX: 1 }}
                           />
@@ -187,14 +187,15 @@ export const Header = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
+                    className="flex justify-center w-full"
                   >
-                    <Button href="/book" variant="primary" className="w-full py-6 text-xs tracking-[0.3em] rounded-2xl">
+                    <Button href="/book" variant="primary" className="px-8 py-4 text-[11px] font-black tracking-[0.2em] rounded-full shadow-md hover:scale-[1.02] transition-transform">
                       BOOK APPOINTMENT
                     </Button>
                   </motion.div>
                   
                   {/* Mobile Drawer Auth Actions */}
-                  <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col items-center gap-2">
+                  <div className="mt-10 pt-6 border-t border-emerald-900/5 flex flex-col items-center gap-2">
                     {user ? (
                       <>
                         <div className="flex items-center gap-2">
@@ -205,7 +206,7 @@ export const Header = () => {
                               className="w-6 h-6 rounded-full border border-emerald-500/20" 
                             />
                           )}
-                          <span className="text-[10px] tracking-[0.1em] font-bold text-gray-500 uppercase">
+                          <span className="text-[10px] tracking-[0.1em] font-bold text-emerald-950/40 uppercase">
                             {user.displayName || user.email}
                           </span>
                         </div>

@@ -52,7 +52,7 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${outfit.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white">
+      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-white overflow-x-hidden">
         <AuthProvider>
           <CartProvider>
             <SearchProvider>

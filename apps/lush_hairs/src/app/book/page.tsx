@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@lush/ui";
 import { SERVICES } from "@/constants";
+import Link from 'next/link';
 
 export default function BookPage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -35,7 +36,7 @@ export default function BookPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--background)]">
+    <main className="min-h-screen bg-[var(--background)] overflow-x-hidden">
       <Header />
 
       <section className="pt-40 pb-32 px-6">
@@ -190,12 +191,13 @@ export default function BookPage() {
                   </div>
 
                   <div className="pt-8">
-                    <Button
-                      onClick={() => window.location.href = '/'}
-                      className="w-full py-8 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white border-0 rounded-full font-black tracking-[0.4em] uppercase shadow-xl hover:shadow-[var(--primary)]/20 transition-all duration-500"
-                    >
-                      Return to Boutique
-                    </Button>
+                    <Link href="/">
+                      <Button
+                        className="w-full py-8 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white border-0 rounded-full font-black tracking-[0.4em] uppercase shadow-xl hover:shadow-[var(--primary)]/20 transition-all duration-500 cursor-pointer"
+                      >
+                        Return to Boutique
+                      </Button>
+                    </Link>
                   </div>
                 </motion.div>
               )}

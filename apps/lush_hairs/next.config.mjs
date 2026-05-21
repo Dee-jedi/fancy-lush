@@ -10,11 +10,16 @@ const nextConfig = {
   outputFileTracingRoot: path.join(__dirname, "../../"),
   turbopack: {}, // Required for Next.js 16 when using custom webpack config
   allowedDevOrigins: ["10.128.0.203", "10.128.0.16"],
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
       },
     ],
   },

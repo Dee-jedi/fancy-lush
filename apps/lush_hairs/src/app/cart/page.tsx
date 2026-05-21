@@ -6,12 +6,17 @@ import { useCart } from "@/context/CartContext";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@lush/ui";
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CartPage() {
   const { cart, removeFromCart, totalItems, clearCart } = useCart();
 
   const totalPrice = cart.reduce((sum, item) => {
-    const priceValue = parseInt(item.price.replace(/[^\d]/g, ''));
+    const rawPrice = item.price;
+    const priceValue = typeof rawPrice === 'number'
+      ? rawPrice
+      : parseInt(String(rawPrice || '0').replace(/[^\d]/g, ''), 10) || 0;
     return sum + (priceValue * item.quantity);
   }, 0);
 
@@ -24,7 +29,14 @@ export default function CartPage() {
   };
 
   const handleCheckout = () => {
-    const itemsList = cart.map(item => `- ${item.name} (x${item.quantity}) - ${item.price}`).join('\n');
+    const itemsList = cart.map(item => {
+      const formattedPrice = typeof item.price === 'number' ? formatNaira(item.price) : item.price;
+      const details = [
+        item.color && `Color: ${item.color}`,
+        item.size && `Size/Length: ${item.size}`,
+      ].filter(Boolean).join(' | ');
+      return `- ${item.name} (x${item.quantity}) - ${formattedPrice}${details ? `\n  _${details}_` : ''}`;
+    }).join('\n');
     const message = `*NEW ORDER REQUEST (LUSH HAIRS)*\n\n*Items:*\n${itemsList}\n\n*Total:* ${formatNaira(totalPrice)}\n\nPlease confirm availability. Thank you!`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -32,7 +44,7 @@ export default function CartPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#030712] overflow-x-hidden">
       <Header />
       
       <div className="max-w-6xl mx-auto px-6 pt-40 pb-32 relative">
@@ -64,9 +76,11 @@ export default function CartPage() {
               <p className="text-2xl font-serif text-white">Your bag is empty</p>
               <p className="text-white/40 font-light">Discover our premium extensions and products.</p>
             </div>
-            <Button onClick={() => window.location.href='/shop'} variant="primary" className="px-12 py-5 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] border-0 text-white">
-              Start Shopping
-            </Button>
+            <Link href="/shop">
+              <Button variant="primary" className="px-12 py-5 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] border-0 text-white cursor-pointer">
+                Start Shopping
+              </Button>
+            </Link>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start relative z-10">
@@ -82,8 +96,8 @@ export default function CartPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="bg-white/5 backdrop-blur-md rounded-[30px] p-6 md:p-8 flex items-center gap-6 border border-white/10 relative group"
                   >
-                    <div className="w-24 h-24 flex-none rounded-2xl overflow-hidden shadow-lg">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <div className="w-24 h-24 flex-none rounded-2xl overflow-hidden shadow-lg relative">
+                      <Image src={item.image} alt={item.name} fill sizes="96px" className="object-cover" />
                     </div>
                     
                     <div className="flex-grow space-y-2">
@@ -101,7 +115,9 @@ export default function CartPage() {
                       
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] font-bold font-sans text-lg">{item.price}</p>
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] font-bold font-sans text-lg">
+                            {typeof item.price === 'number' ? formatNaira(item.price) : item.price}
+                          </p>
                           {item.quantity > 1 && (
                             <span className="bg-white/10 text-white/70 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/5">
                               x{item.quantity}
@@ -162,7 +178,9 @@ export default function CartPage() {
         )}
       </div>
       
-      <Footer />
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
     </main>
   );
 }

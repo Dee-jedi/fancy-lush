@@ -6,8 +6,12 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@lush/ui";
 import { motion } from "framer-motion";
 import Link from 'next/link';
+import Image from 'next/image';
+import { useSearch } from '@/context/SearchContext';
 
 export default function Home() {
+  const { products, loading } = useSearch();
+  const lookbookProducts = products.slice(0, 6);
   return (
     <main className="min-h-screen bg-[var(--background)] overflow-hidden">
       <Header />
@@ -20,13 +24,21 @@ export default function Home() {
 
         {/* Subtle Model Underlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <motion.img
+          <motion.div
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="/hero-model.png"
-            className="w-full h-full object-cover object-center lg:object-right mix-blend-luminosity grayscale"
-          />
+            className="w-full h-full relative"
+          >
+            <Image
+              src="/hero-model.png"
+              alt="Lush Hairs hero model"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center lg:object-right mix-blend-luminosity grayscale"
+            />
+          </motion.div>
           {/* Gradient masking to ensure text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)] via-[var(--background)]/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-transparent to-[var(--background)]/40"></div>
@@ -56,21 +68,22 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 pt-8 justify-center">
-              <Button
-                onClick={() => window.location.href = '/shop'}
-                variant="primary"
-                size="lg"
-                rounded="full"
-                className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] border-0 text-white shadow-xl hover:shadow-[var(--primary)]/20 transition-all duration-700 px-12 py-5 text-[14px] tracking-[0.4em] font-bold"
-              >
-                ENTER BOUTIQUE
-              </Button>
+              <Link href="/shop">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  rounded="full"
+                  className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] border-0 text-white shadow-xl hover:shadow-[var(--primary)]/20 transition-all duration-700 px-12 py-5 text-[14px] tracking-[0.4em] font-bold cursor-pointer"
+                >
+                  ENTER BOUTIQUE
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Featured Collections Section */}
+      {/* Signature Collections Section */}
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -79,68 +92,94 @@ export default function Home() {
               <h2 className="text-5xl md:text-6xl font-serif text-white">The <span className="italic text-white/50">Signature</span> Collections</h2>
             </div>
             <Link href="/shop" className="text-[11px] tracking-[0.3em] uppercase font-black text-white/60 hover:text-[var(--primary)] transition-colors pb-2 border-b border-white/10">
-              View All Collections —
+              View All Products —
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { title: "The Frontal Edit", tag: "Invisible Lace", image: "/frontal-edit.png" },
-              { title: "Signature Wigs", tag: "Expertly Crafted", image: "/wigs-edit.png" }
-            ].map((collection, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative aspect-[16/10] rounded-[40px] overflow-hidden group cursor-pointer"
-              >
-                <img
-                  src={collection.image}
-                  alt={collection.title}
-                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
-                <div className="absolute inset-0 p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                  <span className="text-[10px] tracking-[0.3em] uppercase font-black text-[var(--primary)] mb-2">{collection.tag}</span>
-                  <h3 className="text-3xl md:text-4xl font-serif text-white mb-6">{collection.title}</h3>
-                  <Button variant="outline" className="w-fit px-8 border-white/20 text-white rounded-full text-[10px] tracking-widest opacity-0 group-hover:opacity-100 transition-opacity delay-100">EXPLORE COLLECTION</Button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Editorial Lookbook / Gallery (Masonry style from beauty_spa) */}
-      <section className="py-32 px-6 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24 space-y-4">
-            <span className="text-[var(--primary)] text-[10px] tracking-[0.4em] uppercase font-black">The Lookbook</span>
-            <h2 className="text-5xl md:text-6xl font-serif text-white">Visual <span className="italic text-white/50">Storytelling</span></h2>
-          </div>
-
           <div className="columns-2 md:columns-3 gap-6 space-y-6">
-            {[
-              { src: "https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?q=80&w=2000&auto=format&fit=crop", h: "h-[400px]" },
-              { src: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop", h: "h-[300px]" },
-              { src: "https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=2072&auto=format&fit=crop", h: "h-[500px]" },
-              { src: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?q=80&w=2070&auto=format&fit=crop", h: "h-[350px]" },
-              { src: "https://images.unsplash.com/photo-1560869713-7d0a29430863?q=80&w=2070&auto=format&fit=crop", h: "h-[450px]" },
-              { src: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=2070&auto=format&fit=crop", h: "h-[400px]" }
-            ].map((img, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: (i % 3) * 0.1 }}
-                className={`break-inside-avoid relative rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl ${img.h}`}
-              >
-                <img src={img.src} alt="Gallery" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/60 to-transparent"></div>
-              </motion.div>
-            ))}
+            {loading ? (
+              /* Shimmer skeletons */
+              Array.from({ length: 6 }).map((_, idx) => (
+                <div 
+                  key={idx}
+                  className={`break-inside-avoid relative rounded-[2rem] bg-white/[0.02] border border-white/5 overflow-hidden animate-pulse ${
+                    ["h-[400px]", "h-[300px]", "h-[500px]", "h-[350px]", "h-[450px]", "h-[400px]"][idx % 6]
+                  }`}
+                >
+                  <div className="absolute bottom-0 inset-x-0 p-8 space-y-3">
+                    <div className="h-5 bg-white/5 rounded-xl w-3/4 animate-[shimmer_2s_infinite]"></div>
+                    <div className="h-3 bg-white/5 rounded-lg w-1/4 animate-[shimmer_2s_infinite]"></div>
+                  </div>
+                </div>
+              ))
+            ) : lookbookProducts.length === 0 ? (
+              /* Fallback default curated collections (defensive check) */
+              [
+                { src: "https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?q=80&w=2000&auto=format&fit=crop", h: "h-[400px]", name: "Lace Frontal", price: 120000 },
+                { src: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop", h: "h-[300px]", name: "HD Frontal Wig", price: 180000 },
+                { src: "https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=2072&auto=format&fit=crop", h: "h-[500px]", name: "Curly Wave Bundle", price: 150000 },
+                { src: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?q=80&w=2070&auto=format&fit=crop", h: "h-[350px]", name: "Bone Straight Special", price: 220000 },
+                { src: "https://images.unsplash.com/photo-1560869713-7d0a29430863?q=80&w=2070&auto=format&fit=crop", h: "h-[450px]", name: "Bespoke Custom Blend", price: 250000 },
+                { src: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=2070&auto=format&fit=crop", h: "h-[400px]", name: "Luxury Platinum Angle", price: 300000 }
+              ].map((img, i) => {
+                const isPink = i % 2 === 0;
+                const glowClass = isPink
+                  ? "border-2 border-pink-500/20 hover:border-pink-500/60 shadow-[0_0_15px_rgba(251,113,133,0.12)] hover:shadow-[0_0_25px_rgba(251,113,133,0.4)]"
+                  : "border-2 border-purple-500/20 hover:border-purple-500/60 shadow-[0_0_15px_rgba(139,92,246,0.12)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)]";
+
+                return (
+                  <Link key={i} href="/shop" className="block break-inside-avoid">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: (i % 3) * 0.1 }}
+                      className={`relative rounded-[2rem] overflow-hidden group cursor-pointer transition-all duration-700 ${glowClass} ${img.h}`}
+                    >
+                      <Image 
+                        src={img.src} 
+                        alt={img.name}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.2s] group-hover:scale-105" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/70 via-[var(--background)]/10 to-transparent opacity-40 group-hover:opacity-75 transition-opacity duration-700"></div>
+                    </motion.div>
+                  </Link>
+                );
+              })
+            ) : (
+              /* Real Firebase Shoppable Collections */
+              lookbookProducts.map((product, i) => {
+                const heights = ["h-[400px]", "h-[300px]", "h-[500px]", "h-[350px]", "h-[450px]", "h-[400px]"];
+                const h = heights[i % heights.length];
+                const isPink = i % 2 === 0;
+                const glowClass = isPink
+                  ? "border-2 border-pink-500/20 hover:border-pink-500/60 shadow-[0_0_15px_rgba(251,113,133,0.12)] hover:shadow-[0_0_25px_rgba(251,113,133,0.4)]"
+                  : "border-2 border-purple-500/20 hover:border-purple-500/60 shadow-[0_0_15px_rgba(139,92,246,0.12)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)]";
+
+                return (
+                  <Link key={product.id} href={`/products/${product.id}`} className="block break-inside-avoid">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: (i % 3) * 0.1 }}
+                      className={`relative rounded-[2rem] overflow-hidden group cursor-pointer transition-all duration-700 ${glowClass} ${h}`}
+                    >
+                      <Image 
+                        src={product.image} 
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.2s] group-hover:scale-105" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/70 via-[var(--background)]/10 to-transparent opacity-40 group-hover:opacity-75 transition-opacity duration-700"></div>
+                    </motion.div>
+                  </Link>
+                );
+              })
+            )}
           </div>
         </div>
       </section>

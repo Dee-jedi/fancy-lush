@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@lush/ui";
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
@@ -117,14 +118,15 @@ export default function AboutPage() {
               Our HD Lace frontals are carefully ventilated by veteran artisans, tying each strand with precision micro-knots to guarantee a melt-in lace interface that is completely invisible to the eye.
             </p>
             <div className="pt-6">
-              <Button
-                onClick={() => window.location.href = '/shop'}
-                variant="primary"
-                rounded="full"
-                className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] border-0 text-white px-10 py-4 text-[10px] tracking-widest font-black"
-              >
-                EXPLORE STYLES
-              </Button>
+              <Link href="/shop">
+                <Button
+                  variant="primary"
+                  rounded="full"
+                  className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] border-0 text-white px-10 py-4 text-[10px] tracking-widest font-black cursor-pointer"
+                >
+                  EXPLORE STYLES
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
