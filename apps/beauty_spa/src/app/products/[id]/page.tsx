@@ -87,11 +87,13 @@ export default function ProductDetailPage() {
               loading="lazy"
               className="w-full h-full object-cover transition-transform duration-1000 hover:scale-110"
             />
-            <div className="absolute top-10 left-10">
-              <span className="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full text-[10px] tracking-[0.2em] font-black uppercase text-[var(--primary)] shadow-sm">
-                {product.tag}
-              </span>
-            </div>
+            {product.tag && (
+              <div className="absolute top-10 left-10">
+                <span className="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full text-[10px] tracking-[0.2em] font-black uppercase text-[var(--primary)] shadow-sm">
+                  {product.tag}
+                </span>
+              </div>
+            )}
           </motion.div>
 
           {/* Product Details */}

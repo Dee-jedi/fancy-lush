@@ -20,55 +20,69 @@ export async function GET(request: Request) {
   }
 
   try {
-    // 2. Calculate target date (3 days from today)
     const today = new Date();
-    const threeDaysFromNow = new Date();
-    threeDaysFromNow.setDate(today.getDate() + 3);
-    
-    const targetDateStr = threeDaysFromNow.toISOString().split('T')[0];
-    
-    console.log(`[CRON AUTOMATION] Running reminder checks. Current Date: ${today.toISOString().split('T')[0]}. Target Due Date: <= ${targetDateStr}`);
+    const todayStr = today.toISOString().split('T')[0];
 
-    // 3. Query Firestore for 'pending' reminders due on or before 3 days from now
+    // Helper to calculate date string offset from today
+    const getOffsetDateStr = (daysOffset: number): string => {
+      const d = new Date();
+      d.setDate(today.getDate() + daysOffset);
+      return d.toISOString().split('T')[0];
+    };
+
+    const targetDate3DaysStr = getOffsetDateStr(3);
+    const targetDate1DayStr = getOffsetDateStr(1);
+
+    console.log(`[CRON AUTOMATION] Starting multi-stage reminder run.`);
+    console.log(`- Current Date (Today): ${todayStr}`);
+    console.log(`- 3-Day Reminder Range: > ${targetDate1DayStr} and <= ${targetDate3DaysStr}`);
+    console.log(`- Due-Day / Overdue Threshold: <= ${todayStr}`);
+
+    // Fetch all pending reminders
     const remindersRef = collection(db, 'dentals_reminders');
-    const q = query(
-      remindersRef, 
-      where('status', '==', 'pending'),
-      where('dueDate', '<=', targetDateStr)
-    );
-
-    const querySnapshot = await getDocs(q);
-    const remindersToProcess: any[] = [];
+    const pendingQuery = query(remindersRef, where('status', '==', 'pending'));
+    const querySnapshot = await getDocs(pendingQuery);
     
+    const allPending: any[] = [];
     querySnapshot.forEach((doc) => {
-      remindersToProcess.push({ id: doc.id, ...doc.data() });
+      allPending.push({ id: doc.id, ...doc.data() });
     });
 
-    console.log(`[CRON AUTOMATION] Found ${remindersToProcess.length} pending reminders to process.`);
+    console.log(`[CRON AUTOMATION] Fetched ${allPending.length} pending records from database.`);
 
-    if (remindersToProcess.length === 0) {
-      return NextResponse.json({ 
-        success: true, 
-        message: 'No pending reminders due within 3 days.', 
-        processed: 0 
-      });
+    const toProcess3Day: any[] = [];
+    const toProcessDueDay: any[] = [];
+
+    // Filter reminders in-memory to ensure backward compatibility for records missing flags
+    for (const r of allPending) {
+      const is3DayDue = !r.sent3DayReminder && (r.dueDate <= targetDate3DaysStr && r.dueDate > targetDate1DayStr);
+      const isDueDayDue = !r.sentDueDayReminder && (r.dueDate <= todayStr);
+
+      if (isDueDayDue) {
+        toProcessDueDay.push(r);
+      } else if (is3DayDue) {
+        toProcess3Day.push(r);
+      }
     }
 
+    console.log(`[CRON AUTOMATION] Queue: ${toProcess3Day.length} pending 3-day reminders, ${toProcessDueDay.length} pending due-day reminders.`);
+
     const results = {
-      total: remindersToProcess.length,
+      totalProcessed: 0,
       successCount: 0,
       failedCount: 0,
       details: [] as any[]
     };
 
-    // 4. Dispatch Email Loop (processes sequentially in serverless context)
-    for (const reminder of remindersToProcess) {
+    // 1. Process Due-Day / Overdue Reminders
+    for (const reminder of toProcessDueDay) {
       try {
         const formattedDate = new Date(reminder.dueDate).toLocaleDateString('en-US', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
 
-        // Trigger EmailJS dispatch (runs live or simulation fallback)
+        console.log(`[CRON AUTOMATION] Dispatching Due-Day reminder for ${reminder.patientName} (Due: ${reminder.dueDate})`);
+        
         const sendResult = await sendEmailReminder({
           patient_name: reminder.patientName,
           patient_email: reminder.patientEmail,
@@ -78,14 +92,19 @@ export async function GET(request: Request) {
         });
 
         if (sendResult.success) {
-          // Update status in Firestore
           const docRef = doc(db, 'dentals_reminders', reminder.id);
-          await updateDoc(docRef, { status: 'sent' });
+          // Mark both sent3DayReminder & sentDueDayReminder as true since they are now fully processed
+          await updateDoc(docRef, { 
+            status: 'sent',
+            sent3DayReminder: true,
+            sentDueDayReminder: true
+          });
 
           results.successCount++;
           results.details.push({
             id: reminder.id,
             patientName: reminder.patientName,
+            type: 'due-day',
             status: 'sent',
             simulated: sendResult.simulated
           });
@@ -94,6 +113,7 @@ export async function GET(request: Request) {
           results.details.push({
             id: reminder.id,
             patientName: reminder.patientName,
+            type: 'due-day',
             status: 'failed',
             error: sendResult.error || sendResult.message
           });
@@ -103,17 +123,76 @@ export async function GET(request: Request) {
         results.details.push({
           id: reminder.id,
           patientName: reminder.patientName,
+          type: 'due-day',
           status: 'error',
           error: err.message || String(err)
         });
       }
+      results.totalProcessed++;
     }
+
+    // 2. Process 3-Day Reminders
+    for (const reminder of toProcess3Day) {
+      try {
+        const formattedDate = new Date(reminder.dueDate).toLocaleDateString('en-US', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        console.log(`[CRON AUTOMATION] Dispatching 3-Day reminder for ${reminder.patientName} (Due: ${reminder.dueDate})`);
+
+        const sendResult = await sendEmailReminder({
+          patient_name: reminder.patientName,
+          patient_email: reminder.patientEmail,
+          treatment_type: reminder.treatmentType,
+          next_due_date: formattedDate,
+          custom_message: reminder.customMessage || `Friendly reminder: Your ${reminder.treatmentType} appointment is coming up in 3 days!`
+        });
+
+        if (sendResult.success) {
+          const docRef = doc(db, 'dentals_reminders', reminder.id);
+          // Mark sent3DayReminder as true, status remains pending
+          await updateDoc(docRef, { 
+            sent3DayReminder: true
+          });
+
+          results.successCount++;
+          results.details.push({
+            id: reminder.id,
+            patientName: reminder.patientName,
+            type: '3-day',
+            status: 'sent',
+            simulated: sendResult.simulated
+          });
+        } else {
+          results.failedCount++;
+          results.details.push({
+            id: reminder.id,
+            patientName: reminder.patientName,
+            type: '3-day',
+            status: 'failed',
+            error: sendResult.error || sendResult.message
+          });
+        }
+      } catch (err: any) {
+        results.failedCount++;
+        results.details.push({
+          id: reminder.id,
+          patientName: reminder.patientName,
+          type: '3-day',
+          status: 'error',
+          error: err.message || String(err)
+        });
+      }
+      results.totalProcessed++;
+    }
+
+    console.log(`[CRON AUTOMATION] Completed run. Processed: ${results.totalProcessed}, Sent: ${results.successCount}, Failed: ${results.failedCount}`);
 
     return NextResponse.json({
       success: true,
-      message: `Processed ${results.total} reminders. ${results.successCount} sent, ${results.failedCount} failed.`,
+      message: `Processed ${results.totalProcessed} reminders. ${results.successCount} sent successfully.`,
       metrics: {
-        total: results.total,
+        total: results.totalProcessed,
         sent: results.successCount,
         failed: results.failedCount
       },
@@ -129,3 +208,4 @@ export async function GET(request: Request) {
     }, { status: 500 });
   }
 }
+

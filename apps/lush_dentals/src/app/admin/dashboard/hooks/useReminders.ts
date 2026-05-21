@@ -23,6 +23,8 @@ export interface Reminder {
   treatmentType: string;
   dueDate: string;
   status: 'pending' | 'sent';
+  sent3DayReminder?: boolean;
+  sentDueDayReminder?: boolean;
   customMessage?: string;
   createdAt: string;
 }
@@ -153,6 +155,8 @@ export function useReminders(user: any, role: string | null) {
         treatmentType: finalTreatment,
         dueDate: formData.dueDate,
         status: 'pending',
+        sent3DayReminder: false,
+        sentDueDayReminder: false,
         customMessage: formData.customMessage,
         createdAt: new Date().toISOString()
       });
@@ -225,7 +229,11 @@ export function useReminders(user: any, role: string | null) {
 
       if (result.success) {
         const docRef = doc(db, 'dentals_reminders', reminder.id);
-        await updateDoc(docRef, { status: 'sent' });
+        await updateDoc(docRef, { 
+          status: 'sent',
+          sent3DayReminder: true,
+          sentDueDayReminder: true
+        });
 
         // Refresh aggregate counts asynchronously since status changed
         fetchCounts();

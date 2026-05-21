@@ -67,7 +67,7 @@ export const Header = () => {
                 }`}
               >
                 {item.name}
-                <span className={`absolute bottom-0 left-0 h-[2px] bg-[var(--secondary)] transition-all ${
+                <span className={`absolute bottom-0 left-0 h-px bg-[var(--secondary)] transition-all ${
                   pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
                 }`}></span>
               </motion.a>
@@ -172,7 +172,7 @@ export const Header = () => {
                         {isActive && (
                           <motion.div 
                             layoutId="activeIndicator"
-                            className="w-8 h-[2px] bg-[var(--secondary)] rounded-full mt-1"
+                            className="w-8 h-px bg-[var(--secondary)] rounded-full mt-1"
                             initial={{ opacity: 0, scaleX: 0 }}
                             animate={{ opacity: 1, scaleX: 1 }}
                           />

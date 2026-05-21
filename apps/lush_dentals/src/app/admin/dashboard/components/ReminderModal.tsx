@@ -255,10 +255,13 @@ export const ReminderModal = ({
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="bg-[var(--primary)] text-white px-6 py-3.5 rounded-2xl text-[10px] tracking-wider uppercase font-bold hover:bg-emerald-800 transition-all shadow-sm focus:outline-none cursor-pointer min-w-[120px]"
+                  className="bg-[var(--primary)] text-white px-6 py-3.5 rounded-2xl text-[10px] tracking-wider uppercase font-bold hover:bg-emerald-800 hover:shadow-md active:scale-[0.98] transition-all shadow-sm focus:outline-none cursor-pointer min-w-[150px]"
                 >
                   {actionLoading ? (
-                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <div className="flex items-center justify-center gap-1.5 mx-auto">
+                      <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>{reminder ? 'SAVING...' : 'CREATING...'}</span>
+                    </div>
                   ) : reminder ? (
                     'SAVE CHANGES'
                   ) : (

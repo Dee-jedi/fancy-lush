@@ -48,10 +48,9 @@ export const AddProductModal = ({ isOpen, onClose, onSuccess }: AddProductModalP
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium tracking-widest text-gray-500 uppercase mb-2">Category Tag</label>
+                  <label className="block text-xs font-medium tracking-widest text-gray-500 uppercase mb-2">Category Tag (Optional)</label>
                   <input 
                     type="text" 
-                    required
                     value={formData.tag}
                     onChange={(e) => setFormData({...formData, tag: e.target.value})}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[var(--secondary)] text-gray-800"
@@ -73,10 +72,9 @@ export const AddProductModal = ({ isOpen, onClose, onSuccess }: AddProductModalP
               </div>
 
               <div>
-                <label className="block text-xs font-medium tracking-widest text-gray-500 uppercase mb-2">Short Description</label>
+                <label className="block text-xs font-medium tracking-widest text-gray-500 uppercase mb-2">Short Description (Optional)</label>
                 <input 
                   type="text" 
-                  required
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[var(--secondary)] text-gray-800"
@@ -85,9 +83,8 @@ export const AddProductModal = ({ isOpen, onClose, onSuccess }: AddProductModalP
               </div>
 
               <div>
-                <label className="block text-xs font-medium tracking-widest text-gray-500 uppercase mb-2">Full Description</label>
+                <label className="block text-xs font-medium tracking-widest text-gray-500 uppercase mb-2">Full Description (Optional)</label>
                 <textarea 
-                  required
                   rows={3}
                   value={formData.fullDescription}
                   onChange={(e) => setFormData({...formData, fullDescription: e.target.value})}

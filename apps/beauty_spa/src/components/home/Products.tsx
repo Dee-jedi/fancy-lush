@@ -114,11 +114,13 @@ export const Products = () => {
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 select-none"
                   />
-                  <div className="absolute top-5 left-5">
-                    <span className="bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[var(--primary)] border border-gray-100 shadow-sm">
-                      {product.tag}
-                    </span>
-                  </div>
+                  {product.tag && (
+                    <div className="absolute top-5 left-5">
+                      <span className="bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[var(--primary)] border border-gray-100 shadow-sm">
+                        {product.tag}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-8">

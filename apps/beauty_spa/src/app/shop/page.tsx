@@ -124,11 +124,13 @@ export default function ShopPage() {
                       />
 
                       {/* Floating Category Pill Badge (Wider max-width for cleaner category display) */}
-                      <div className="absolute top-3 left-3 md:top-5 md:left-5 z-20">
-                        <span className="bg-white/95 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[7px] md:text-[9px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-[var(--primary)] border border-gray-100 shadow-sm block max-w-[80px] md:max-w-[120px] truncate text-center">
-                          {product.tag}
-                        </span>
-                      </div>
+                      {product.tag && (
+                        <div className="absolute top-3 left-3 md:top-5 md:left-5 z-20">
+                          <span className="bg-white/95 backdrop-blur-md px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[7px] md:text-[9px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-[var(--primary)] border border-gray-100 shadow-sm block max-w-[80px] md:max-w-[120px] truncate text-center">
+                            {product.tag}
+                          </span>
+                        </div>
+                      )}
 
                       {/* Quick Add to Cart Button */}
                       <div className="absolute top-3 right-3 md:top-6 md:right-6 z-20">
