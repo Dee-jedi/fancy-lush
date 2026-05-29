@@ -4,11 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export function BottomNav() {
   const pathname = usePathname();
   const { totalItems } = useCart();
+  const { user } = useAuth();
 
   const navItems = [
     {
@@ -45,17 +48,31 @@ export function BottomNav() {
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           {totalItems > 0 && (
-            <span className="absolute -top-2.5 -right-2.5 bg-gradient-to-r from-[#8e5e38] to-[#f5d6c6] text-[#050404] font-serif font-black italic rounded-full text-[9px] w-4.5 h-4.5 flex items-center justify-center border border-[#050404] shadow-md">
+            <span className="absolute -top-2.5 -right-2.5 bg-linear-to-r from-[#8e5e38] to-[#f5d6c6] text-[#050404] font-serif font-black italic rounded-full text-[9px] w-4.5 h-4.5 flex items-center justify-center border border-[#050404] shadow-md">
               {totalItems}
             </span>
           )}
         </div>
       )
+    },
+    {
+      label: "Me",
+      href: "/me",
+      icon: user?.photoURL ? (
+        <div className="w-5 h-5 rounded-full overflow-hidden border border-[white]/20">
+          <Image src={user.photoURL} alt="Profile" width={20} height={20} className="w-full h-full object-cover" />
+        </div>
+      ) : (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      )
     }
   ];
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#050404]/90 backdrop-blur-lg border-t border-white/5 pb-6 pt-3 px-8 flex justify-around items-center shadow-[0_-15px_40px_rgba(5,4,4,0.9)]">
+    <div className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#050404]/90 backdrop-blur-lg border-t border-[white]/5 pb-6 pt-3 px-8 flex justify-around items-center shadow-[0_-15px_40px_rgba(0,0,0,0.9)]">
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
@@ -66,14 +83,14 @@ export function BottomNav() {
           >
             {/* Nav Icon */}
             <div className={`transition-colors duration-300 ${
-              isActive ? "text-[#c89666]" : "text-white/40 group-hover:text-white"
+              isActive ? "text-[#c89666]" : "text-[white]/40 group-hover:text-[white]"
             }`}>
               {item.icon}
             </div>
 
             {/* Label */}
             <span className={`text-[8px] tracking-[0.2em] font-black uppercase transition-all duration-300 ${
-              isActive ? "text-white scale-105" : "text-white/30 group-hover:text-white/60"
+              isActive ? "text-[white] scale-105" : "text-[white]/30 group-hover:text-[white]/60"
             }`}>
               {item.label}
             </span>

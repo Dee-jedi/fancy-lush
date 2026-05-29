@@ -9,19 +9,21 @@ import { useSearch } from "@/context/SearchContext";
 import { PRODUCTS } from "@/constants";
 
 export default function BoutiquePage() {
-  const { searchQuery, activeCategory } = useSearch();
+  const { searchQuery, activeCategory, products } = useSearch();
 
   // Instant luxury client-side search & category filtering
-  const filteredProducts = PRODUCTS.filter((product) => {
-    const matchesSearch =
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.searchTerms 
+      ? product.searchTerms.some((term: string) => term.includes(searchQuery.toLowerCase()))
+      : (product.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+         product.description?.toLowerCase().includes(searchQuery.toLowerCase()));
+    
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
-    return matchesSearch && matchesCategory;
+    return (searchQuery ? matchesSearch : true) && matchesCategory;
   });
 
   return (
-    <main className="min-h-screen bg-[#050404] text-white pb-28 lg:pb-12">
+    <main className="min-h-screen bg-[#050404] text-[white] pb-28 lg:pb-12">
       {/* Standard Desktop/Mobile Header (Scrolls away naturally because it is absolute/fixed at top) */}
       <Header />
 

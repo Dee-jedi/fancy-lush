@@ -7,14 +7,14 @@
 
 @layer base {
   :root {
-    --background: #050404; /* Sleek Midnight Black */
+    --background: #FAF7F2; /* Sleek Midnight Black */
     --foreground: #ffffff;
-    --primary: #c89666; /* Elegant Bronze Gold */
+    --primary: #9C7B5C; /* Elegant Bronze Gold */
     --primary-hover: #b58353;
-    --secondary: #f5d6c6; /* Soft Warm Amber */
-    --accent: #8e5e38; /* Rich Copper-Brown Accent */
-    --card: #110c0a; /* Very Dark Cocoa Card - subtle near-black! */
-    --border: rgba(229, 186, 160, 0.05); /* Soft Bronze Tinted Border */
+    --secondary: #D4BFA0; /* Soft Warm Amber */
+    --accent: #7A5F45; /* Rich Copper-Brown Accent */
+    --card: #FFFFFF; /* Very Dark Cocoa Card - subtle near-black! */
+    --border: rgba(156, 123, 92, 0.05); /* Soft Bronze Tinted Border */
     --radius: 2.5rem;
   }
 }
@@ -22,7 +22,7 @@
 @layer base {
   body {
     /* Spotlight Gradient: warm subtle espresso center fading into deep midnight black edges */
-    background: radial-gradient(circle at 50% 20%, #1a100c 0%, #050404 100%) no-repeat fixed;
+    background: radial-gradient(circle at 50% 20%, #FFF9F3 0%, #FAF7F2 100%) no-repeat fixed;
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -53,5 +53,5 @@
 .glow-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 40px 80px -20px rgba(200, 150, 102, 0.12);
-  border-color: rgba(229, 186, 160, 0.2) !important;
+  border-color: rgba(156, 123, 92, 0.2) !important;
 }

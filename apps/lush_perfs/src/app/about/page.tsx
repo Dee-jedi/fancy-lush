@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#050404] text-white pb-28 lg:pb-12">
+    <main className="min-h-screen bg-[#050404] text-[white] pb-28 lg:pb-12">
       <Header />
 
       {/* Hero Narrative Section */}
@@ -26,7 +26,7 @@ export default function AboutPage() {
             className="w-full h-full object-cover grayscale object-center opacity-30"
           />
           {/* Radial Glowing vignette mask */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050404] via-transparent to-[#050404]/70 z-20"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-[#050404] via-transparent to-[#050404]/70 z-20"></div>
           <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-[#c89666]/10 rounded-full blur-[150px] mix-blend-screen pointer-events-none z-10"></div>
         </div>
 
@@ -37,13 +37,13 @@ export default function AboutPage() {
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="space-y-6"
           >
-            <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666] bg-white/5 border border-white/5 px-6 py-2 rounded-full backdrop-blur-md">
+            <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666] bg-[white]/5 border border-[white]/5 px-6 py-2 rounded-full backdrop-blur-md">
               Atelier of Senses & Form
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white tracking-tight">
-              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8e5e38] via-[#c89666] to-[#f5d6c6] italic font-light">Lush Atelier</span> Story
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-[white] tracking-tight">
+              The <span className="text-transparent bg-clip-text bg-linear-to-r from-[#8e5e38] via-[#c89666] to-[#f5d6c6] italic font-light">Lush Atelier</span> Story
             </h1>
-            <p className="text-xs md:text-sm text-white/50 font-light max-w-xl mx-auto leading-relaxed">
+            <p className="text-xs md:text-sm text-[white]/50 font-light max-w-xl mx-auto leading-relaxed">
               We believe accessories are personal signposts of confidence. Solid 18K gold hand-carved to catch the light, and masterclass fragrance oils crafted to linger.
             </p>
           </motion.div>
@@ -51,7 +51,7 @@ export default function AboutPage() {
       </section>
 
       {/* Narrative & Craft Section */}
-      <section className="py-24 px-6 md:px-12 relative z-10 border-t border-white/5 overflow-hidden">
+      <section className="py-24 px-6 md:px-12 relative z-10 border-t border-[white]/5 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
           {/* Gallery Showcase Cards */}
@@ -64,9 +64,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-white/5 shadow-2xl bg-[#110c0a]"
+              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-[white]/5 shadow-2xl bg-[#110c0a]"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#c89666]/10 to-transparent z-10 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-[#c89666]/10 to-transparent z-10 mix-blend-overlay"></div>
               <Image
                 src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800"
                 alt="Goldsmithing refinery"
@@ -74,9 +74,9 @@ export default function AboutPage() {
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2s] ease-out"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#050404]/90 p-6 z-20">
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-[#050404]/90 p-6 z-20">
                 <span className="text-[8px] tracking-[0.2em] font-black uppercase text-[#c89666] block mb-1">Fine Goldsmithing</span>
-                <h4 className="text-white text-sm font-serif">18K Solid Casts</h4>
+                <h4 className="text-[white] text-sm font-serif">18K Solid Casts</h4>
               </div>
             </motion.div>
 
@@ -86,9 +86,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-white/5 shadow-2xl mt-12 bg-[#110c0a]"
+              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-[white]/5 shadow-2xl mt-12 bg-[#110c0a]"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#f5d6c6]/10 to-transparent z-10 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-[#f5d6c6]/10 to-transparent z-10 mix-blend-overlay"></div>
               <Image
                 src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800"
                 alt="Oud oil distillation"
@@ -96,9 +96,9 @@ export default function AboutPage() {
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2s] ease-out"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#050404]/90 p-6 z-20">
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-[#050404]/90 p-6 z-20">
                 <span className="text-[8px] tracking-[0.2em] font-black uppercase text-[#f5d6c6] block mb-1">Olfactory Alchemy</span>
-                <h4 className="text-white text-sm font-serif">Concentrated Oud Extracts</h4>
+                <h4 className="text-[white] text-sm font-serif">Concentrated Oud Extracts</h4>
               </div>
             </motion.div>
           </div>
@@ -106,19 +106,19 @@ export default function AboutPage() {
           {/* Narrative Content */}
           <div className="space-y-8 lg:pl-6">
             <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666]">Crafted Without Compromise</span>
-            <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-serif text-[white] leading-tight">
               Clinical Quality Sourcing <br />
-              <span className="italic text-white/40">Meets Opulent Expression</span>
+              <span className="italic text-[white]/40">Meets Opulent Expression</span>
             </h2>
-            <p className="text-white/60 font-light leading-relaxed text-xs md:text-sm">
+            <p className="text-[white]/60 font-light leading-relaxed text-xs md:text-sm">
               At Lush Atelier, we treat jewelry crafting and fragrance formulation with clinical precision. Our gold is refined to solid 18-karat purity, alloyed for rich warm hues, and set with hand-selected diamonds. Every link is custom assembled to sit on the neck with flawless structural presence.
             </p>
-            <p className="text-white/60 font-light leading-relaxed text-xs md:text-sm">
+            <p className="text-[white]/60 font-light leading-relaxed text-xs md:text-sm">
               For our fragrance extracts, we collaborate with veteran perfumers to source Cambodian Oud resin and Turkish roses. These raw organic materials undergo meticulous molecular distillation, aging, and concentration checks to guarantee longevity and a deep velvet silage that is unique to you.
             </p>
             <div className="pt-6">
               <Link href="/">
-                <button className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#8e5e38] via-[#c89666] to-[#f5d6c6] hover:scale-105 transition-transform text-[#050404] text-[9px] tracking-widest font-black uppercase shadow-lg">
+                <button className="px-8 py-3.5 rounded-full bg-linear-to-r from-[#8e5e38] via-[#c89666] to-[#f5d6c6] hover:scale-105 transition-transform text-[#050404] text-[9px] tracking-widest font-black uppercase shadow-lg">
                   Explore Boutique
                 </button>
               </Link>
@@ -128,19 +128,19 @@ export default function AboutPage() {
       </section>
 
       {/* Visionary Founder Section */}
-      <section className="py-24 px-6 md:px-12 relative z-10 bg-white/[0.005] border-y border-white/5 overflow-hidden">
+      <section className="py-24 px-6 md:px-12 relative z-10 bg-[white]/[0.005] border-y border-[white]/5 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
           {/* Bio Story */}
           <div className="space-y-8">
             <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666]">The Visionary</span>
-            <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-serif text-[white] leading-tight">
               Hadarah <br />
-              <span className="italic text-white/40">Founder & CEO</span>
+              <span className="italic text-[white]/40">Founder & CEO</span>
             </h2>
-            <div className="relative p-8 rounded-[2rem] bg-white/[0.01] border border-white/5 backdrop-blur-3xl shadow-xl">
+            <div className="relative p-8 rounded-[2rem] bg-[white]/[0.01] border border-[white]/5 backdrop-blur-3xl shadow-xl">
               <div className="absolute top-6 left-6 text-6xl text-[#c89666]/10 font-serif leading-none">“</div>
-              <p className="text-white/80 font-light italic leading-relaxed relative z-10 pl-6 text-xs md:text-sm">
+              <p className="text-[white]/80 font-light italic leading-relaxed relative z-10 pl-6 text-xs md:text-sm">
                 I wanted to create an experience where clinical precision meets uncompromised quality. Lush Accessories represents the ultimate personal signature—glistening fine jewelry to frame your appearance, and opulent fragrance notes to announce your presence.
               </p>
             </div>
@@ -154,9 +154,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative aspect-square w-full max-w-md rounded-full overflow-hidden border-[12px] border-white/5 shadow-3xl z-10"
+              className="relative aspect-square w-full max-w-md rounded-full overflow-hidden border-[12px] border-[white]/5 shadow-3xl z-10"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#c89666]/20 to-transparent z-10 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-[#c89666]/20 to-transparent z-10 mix-blend-overlay"></div>
               <Image
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800"
                 alt="Founder Hadarah"
