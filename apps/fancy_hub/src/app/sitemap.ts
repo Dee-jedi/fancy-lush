@@ -1,12 +1,14 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://fancylush.com.ng'
+  
   return [
     {
-      url: 'https://fancylush.com.ng',
+      url: `${baseUrl}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
-    },
+    }
   ]
 }
