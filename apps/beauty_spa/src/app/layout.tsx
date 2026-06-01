@@ -16,6 +16,13 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fancylushspa.com.ng'),
+  alternates: {
+    canonical: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
   title: "Fancylush Beauty & Spa | Luxury Skincare, Massages & Body Care in Ilorin, Kwara",
   description: "Welcome to Fancylush Beauty & Spa in Ilorin, Kwara State. Experience organic face lift treatments, clinical skincare, advanced body massage therapies, manicures, and complete luxury relaxation.",
   keywords: [

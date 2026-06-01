@@ -17,6 +17,13 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fancylushhair.com.ng'),
+  alternates: {
+    canonical: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
   title: "Lush Hairs & Spa | Premium Hair Extensions & Beauty Spa in Ilorin, Kwara",
   description: "Experience ultimate luxury at Lush Hairs & Spa in Ilorin, Kwara State. Sourcing 100% raw human hair, custom wig installations, HD lace frontals, expert massage therapies, and premium beauty services.",
   keywords: [

@@ -15,6 +15,13 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fancylush.com.ng'),
+  alternates: {
+    canonical: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
   title: "FANCY LUSH | The Luxury Empire of Beauty, Fragrances, Hair & Wellness",
   description: "Welcome to the central gateway of Fancy Lush. Explore our premium brands in Ilorin, Kwara: Fancy Lush Beauty & Spa, Lush Hairs, Lush Perfumes & Jewelry, and Lush Dentals. Experience world-class clinical perfection and artistic craftsmanship.",
   keywords: [

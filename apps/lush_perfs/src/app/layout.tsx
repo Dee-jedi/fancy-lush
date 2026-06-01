@@ -21,6 +21,13 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lushatelier.com.ng'),
+  alternates: {
+    canonical: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
   title: "Lush Boutique | Luxury Gold Jewelry, Premium Perfumes & Designer Sunshades in Ilorin",
   description: "Experience absolute luxury at Lush Boutique in Ilorin, Kwara State. Sourcing solid 18K gold necklaces, diamond rings, designer sunshades, and highly concentrated Cambodian Oud extracts.",
   keywords: [

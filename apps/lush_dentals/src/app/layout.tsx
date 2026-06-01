@@ -15,6 +15,13 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lushdental.com.ng'),
+  alternates: {
+    canonical: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
   title: "Lush Dentals | Best Dentist, Teeth Whitening & Cosmetic Dental Clinic in Ilorin, Kwara",
   description: "Welcome to Lush Dentals in Ilorin, Kwara State. Our expert dentists offer professional teeth cleaning, cosmetic dentistry, emergency dental care, dental implants, teeth whitening, and general oral surgery in a comfortable clinic.",
   keywords: [
