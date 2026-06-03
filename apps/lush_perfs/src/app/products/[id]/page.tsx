@@ -13,6 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { EditProductModal } from '@/components/admin/EditProductModal';
 import { DeleteConfirmationModal } from '@/components/admin/DeleteConfirmationModal';
+import { ImageModal } from '@/components/ui/ImageModal';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -25,6 +26,7 @@ export default function ProductDetailPage() {
   
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -52,7 +54,42 @@ export default function ProductDetailPage() {
   }, [id]);
 
   if (loading) {
-    return <main className="min-h-screen bg-[#050404] flex items-center justify-center"><div className="text-[#c89666]">Loading...</div></main>;
+    return (
+      <main className="min-h-screen bg-[#050404] pb-28 lg:pb-12">
+        <Header />
+        <div className="max-w-7xl mx-auto px-6 pt-36 pb-24 animate-pulse">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Image Skeleton */}
+            <div className="aspect-4/5 rounded-[3rem] bg-[#110c0a] border border-[white]/5 w-full"></div>
+            
+            {/* Text Details Skeleton */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="h-3 bg-white/10 rounded w-24"></div>
+                <div className="h-2 bg-white/10 rounded w-16"></div>
+                <div className="h-12 bg-white/10 rounded w-3/4"></div>
+                <div className="h-8 bg-white/10 rounded w-1/3"></div>
+              </div>
+              <div className="space-y-2 pt-4">
+                <div className="h-3 bg-white/10 rounded w-full"></div>
+                <div className="h-3 bg-white/10 rounded w-5/6"></div>
+                <div className="h-3 bg-white/10 rounded w-4/6"></div>
+              </div>
+              <div className="bg-[#110c0a]/50 border border-[white]/5 rounded-4xl p-6 space-y-4">
+                <div className="h-2 bg-white/10 rounded w-32"></div>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="h-8 bg-white/10 rounded w-full"></div>
+                  <div className="h-8 bg-white/10 rounded w-full"></div>
+                </div>
+              </div>
+              <div className="pt-6">
+                <div className="h-12 bg-white/10 rounded-full w-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   if (!product) {
@@ -97,7 +134,8 @@ export default function ProductDetailPage() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative aspect-4/5 rounded-[3rem] overflow-hidden border border-[white]/5 shadow-2xl bg-[#110c0a]"
+            onClick={() => setIsImageModalOpen(true)}
+            className="relative aspect-4/5 rounded-[3rem] overflow-hidden border border-[white]/5 shadow-2xl bg-[#110c0a] cursor-zoom-in"
           >
             <div className="absolute inset-0 bg-linear-to-t from-[#050404]/60 via-transparent to-transparent z-10 pointer-events-none"></div>
             <Image 
@@ -204,6 +242,13 @@ export default function ProductDetailPage() {
         onClose={() => setIsDeleteOpen(false)} 
         productId={product.id} 
         productName={product.name} 
+      />
+
+      <ImageModal 
+        isOpen={isImageModalOpen} 
+        onClose={() => setIsImageModalOpen(false)} 
+        imageSrc={product.image} 
+        altText={product?.name || 'Product Image'} 
       />
     </main>
   );

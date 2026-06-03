@@ -8,19 +8,19 @@ export function Showroom() {
       <div className="text-center mb-16 space-y-4">
         <span className="text-[9px] tracking-[0.4em] font-black text-white/40 uppercase block">FLAGSHIP COORDINATES</span>
         <h2 className="text-3xl md:text-5xl font-serif text-white">Our Palms Mall Showroom</h2>
-        <p className="text-xs text-white/40 tracking-[0.1em] font-light max-w-md mx-auto">
+        <p className="text-xs text-white/40 tracking-widest font-light max-w-md mx-auto">
           Experience our physical boutiques and consult with our specialists in Kwara State.
         </p>
       </div>
 
       {/* Horizontal Coordinates Glassmorphic Panel (No Frame, Zero API Errors!) */}
       <div className="glass-panel border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
-        
+
         {/* Soft Background Highlight */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-40 bg-[#6366f1]/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#6366f1]/10 transition-all duration-700" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start relative z-10">
-          
+
           {/* Address credentials */}
           <div className="space-y-4 text-center md:text-left">
             <span className="inline-block p-3 rounded-2xl bg-white/5 border border-[#6366f1]/20 text-[#a78bfa]">
@@ -67,12 +67,12 @@ export function Showroom() {
             className="inline-flex items-center gap-3 text-[10px] tracking-[0.25em] font-black text-white/60 hover:text-white uppercase transition-all duration-300 group/link"
           >
             CALCULATE LIVE ROUTE DIRECTIONS
-            <svg 
-              width="14" 
-              height="14" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
               strokeWidth="2.5"
               className="transform group-hover/link:translate-x-1.5 transition-transform duration-300"
             >

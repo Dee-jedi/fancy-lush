@@ -13,6 +13,7 @@ import { useAuth } from '@/context/AuthContext';
 import { EditProductModal } from '@/components/admin/EditProductModal';
 import { DeleteConfirmationModal } from '@/components/admin/DeleteConfirmationModal';
 import { formatPrice } from '@/utils/formatPrice';
+import { ImageModal } from '@/components/ui/ImageModal';
 export default function ProductDetailPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function ProductDetailPage() {
   const { user, role } = useAuth();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   useEffect(() => {
     fetchProduct();
@@ -46,8 +48,8 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#faf9f6] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-[var(--secondary)] rounded-full animate-spin"></div>
+      <main className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-gray-100 border-t-(--secondary) rounded-full animate-spin"></div>
       </main>
     );
   }
@@ -70,7 +72,7 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#faf9f6]">
+    <main className="min-h-screen bg-background">
       <Header />
       
       <div className="max-w-7xl mx-auto px-8 pt-48 pb-32">
@@ -79,7 +81,8 @@ export default function ProductDetailPage() {
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl"
+            className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl group cursor-zoom-in"
+            onClick={() => setIsImageModalOpen(true)}
           >
             <img 
               src={product.image} 
@@ -89,7 +92,7 @@ export default function ProductDetailPage() {
             />
             {product.tag && (
               <div className="absolute top-10 left-10">
-                <span className="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full text-[10px] tracking-[0.2em] font-black uppercase text-[var(--primary)] shadow-sm">
+                <span className="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full text-[10px] tracking-[0.2em] font-black uppercase text-(--primary) shadow-sm">
                   {product.tag}
                 </span>
               </div>
@@ -103,14 +106,14 @@ export default function ProductDetailPage() {
             className="space-y-10"
           >
             <div className="space-y-4">
-              <Link href="/" className="text-[10px] tracking-widest uppercase font-black text-[var(--secondary)] hover:opacity-70 transition-opacity">
+              <Link href="/" className="text-[10px] tracking-widest uppercase font-black text-(--secondary) hover:opacity-70 transition-opacity">
                 &larr; Back to Collection
               </Link>
-              <h1 className="text-6xl md:text-7xl font-serif text-[var(--primary)] leading-tight">{product.name}</h1>
-              <p className="text-2xl font-serif italic text-[var(--secondary)]">{formatPrice(product.price)}</p>
+              <h1 className="text-4xl md:text-5xl font-serif text-(--primary) leading-tight">{product.name}</h1>
+              <p className="text-3xl md:text-4xl font-serif italic text-(--secondary)">{formatPrice(product.price)}</p>
             </div>
 
-            <p className="text-xl text-[var(--foreground)]/60 font-light leading-relaxed">
+            <p className="text-xl text-(--foreground)/60 font-light leading-relaxed">
               {product.fullDescription}
             </p>
 
@@ -126,7 +129,7 @@ export default function ProductDetailPage() {
                 <div className="my-6 flex items-center justify-center gap-6 text-xs tracking-[0.2em] font-black w-full">
                   <button 
                     onClick={() => setIsEditModalOpen(true)}
-                    className="text-gray-500 hover:text-[var(--secondary)] transition-colors"
+                    className="text-gray-500 hover:text-(--secondary) transition-colors"
                   >
                     Edit Product
                   </button>
@@ -154,6 +157,12 @@ export default function ProductDetailPage() {
         isOpen={isDeleteModalOpen} 
         product={product} 
         onClose={() => setIsDeleteModalOpen(false)} 
+      />
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        imageSrc={product.image}
+        altText={product.name}
       />
     </main>
   );

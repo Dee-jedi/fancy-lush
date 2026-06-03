@@ -46,22 +46,22 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-center">
             <div className="space-y-8 md:space-y-12 text-center lg:text-left">
               <div className="space-y-4 md:space-y-6">
-                <span className="text-[var(--secondary)] text-[10px] tracking-[0.5em] uppercase font-black block">Clinical Excellence</span>
-                <h2 className="text-4xl md:text-7xl font-serif font-bold text-[var(--primary)] leading-tight">
+                <span className="text-(--secondary) text-[10px] tracking-[0.5em] uppercase font-black block">Clinical Excellence</span>
+                <h2 className="text-4xl md:text-7xl font-serif font-bold text-(--primary) leading-tight">
                   Beautiful Smiles <br className="hidden md:block" /> 
-                  <span className="italic font-light text-[var(--secondary)]">That Last</span>
+                  <span className="italic font-light text-(--secondary)">That Last</span>
                 </h2>
               </div>
-              <p className="text-base md:text-xl text-[var(--foreground)]/60 font-light leading-relaxed">
+              <p className="text-base md:text-xl text-(--foreground)/60 font-light leading-relaxed">
                 Founded with a vision to redefine dental care, Lush Dentals brings a touch of luxury to clinical excellence. We believe that visiting the dentist shouldn't be a chore, but an experience that leaves you feeling refreshed and confident.
               </p>
               <div className="pt-6 flex flex-col md:flex-row gap-8 justify-center lg:justify-start">
                 <div>
-                  <p className="text-3xl md:text-5xl font-serif font-bold text-[var(--primary)]">100%</p>
+                  <p className="text-3xl md:text-5xl font-serif font-bold text-(--primary)">100%</p>
                   <p className="text-[9px] tracking-widest uppercase font-black opacity-30 mt-1">Success Rate</p>
                 </div>
                 <div>
-                  <p className="text-3xl md:text-5xl font-serif font-bold text-[var(--primary)]">700+</p>
+                  <p className="text-3xl md:text-5xl font-serif font-bold text-(--primary)">700+</p>
                   <p className="text-[9px] tracking-widest uppercase font-black opacity-30 mt-1">Happy Patients</p>
                 </div>
               </div>
@@ -70,20 +70,20 @@ export default function AboutPage() {
             {/* Asymmetrical Image Grid */}
             <div className="grid grid-cols-2 gap-4 md:gap-8">
               <div className="space-y-4 md:space-y-8">
-                <div className="relative rounded-[30px] md:rounded-[40px] shadow-xl w-full aspect-[3/4] overflow-hidden">
+                <div className="relative rounded-[30px] md:rounded-[40px] shadow-xl w-full aspect-3/4 overflow-hidden">
                   <Image src="https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=800&auto=format&fit=crop" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" alt="Clinic" />
                 </div>
-                <div className="bg-[var(--secondary)] p-6 md:p-10 rounded-[30px] md:rounded-[40px] text-emerald-950 text-center">
+                <div className="bg-(--secondary) p-6 md:p-10 rounded-[30px] md:rounded-[40px] text-emerald-950 text-center">
                   <p className="text-3xl md:text-5xl font-serif font-bold mb-1">05+</p>
                   <p className="text-[8px] md:text-[10px] tracking-widest font-black uppercase opacity-60">Years of Care</p>
                 </div>
               </div>
               <div className="space-y-4 md:space-y-8 pt-8 md:pt-16">
-                <div className="bg-[var(--primary)] p-6 md:p-10 rounded-[30px] md:rounded-[40px] text-white text-center">
+                <div className="bg-(--primary) p-6 md:p-10 rounded-[30px] md:rounded-[40px] text-white text-center">
                   <p className="text-3xl md:text-5xl font-serif font-bold mb-1">05+</p>
                   <p className="text-[8px] md:text-[10px] tracking-widest font-black uppercase opacity-60">Specialists</p>
                 </div>
-                <div className="relative rounded-[30px] md:rounded-[40px] shadow-xl w-full aspect-[3/4] overflow-hidden">
+                <div className="relative rounded-[30px] md:rounded-[40px] shadow-xl w-full aspect-3/4 overflow-hidden">
                   <Image src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=800&auto=format&fit=crop" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" alt="Service" />
                 </div>
               </div>
@@ -92,19 +92,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Quote Section */}
-      <section className="py-24 md:py-40 bg-emerald-50/30">
-        <div className="max-w-4xl mx-auto px-6 md:px-8 text-center space-y-12 md:space-y-16">
-          <div className="space-y-6">
-            <span className="text-[var(--secondary)] text-[10px] tracking-[0.5em] uppercase font-black">Founder's Vision</span>
-            <h2 className="text-4xl md:text-7xl font-serif font-bold text-[var(--primary)] leading-tight italic font-light">"Dental care is the art of <br className="hidden md:block" /> preserving confidence."</h2>
-          </div>
-          <div className="flex flex-col items-center gap-4 md:gap-6">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white border border-emerald-900/5 flex items-center justify-center font-serif italic text-[var(--primary)] text-3xl md:text-4xl shadow-sm">H</div>
-            <div className="space-y-1">
-              <p className="text-[var(--primary)] font-bold text-xl md:text-2xl tracking-tight">Hadarah</p>
-              <p className="text-[9px] tracking-[0.3em] text-[var(--foreground)]/30 uppercase font-black">Founder & CEO</p>
-            </div>
+      {/* The Founder Section */}
+      <section className="py-32 bg-emerald-50/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative aspect-square rounded-full overflow-hidden border-12 border-white shadow-xl"
+            >
+              <Image
+                src="/images/about_pic.jpg"
+                alt="Founder Hadarah"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-full object-cover object-[center_15%]"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-(--secondary) mb-4 block">
+                Meet The Visionary
+              </span>
+              <h2 className="text-4xl md:text-6xl font-serif text-(--primary) mb-8">The Face Behind The Smile</h2>
+              <p className="text-lg text-(--foreground)/60 font-light leading-relaxed mb-6">
+                With a passion for cosmetic dentistry and clinical excellence, the founder of Lush Dentals set out to create a practice that dispels the anxiety of traditional dental visits.
+              </p>
+              <p className="text-lg text-(--foreground)/60 font-light leading-relaxed mb-10 italic">
+                "Dental care is the art of preserving confidence. We designed Lush Dentals to be a sanctuary where state-of-the-art treatments meet profound comfort."
+              </p>
+              <div className="pt-4 border-t border-(--primary)/10 inline-block">
+                <span className="font-serif italic text-3xl text-(--primary)">Hadarah</span>
+                <span className="block text-xs tracking-widest text-(--foreground)/40 uppercase mt-2">Founder & CEO</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

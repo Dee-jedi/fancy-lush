@@ -51,13 +51,13 @@ export function Ecosystem() {
 
   return (
     <section id="ecosystem" className="py-16 md:py-24 px-6 max-w-[1600px] mx-auto relative z-10">
-      
+
       {/* Dynamic Background Canopy Light Leak inside the ecosystem view bounds */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div 
+        <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[500px] rounded-full blur-[150px] transition-all duration-1000 mix-blend-screen opacity-15"
           style={{
-            background: hoveredIndex !== null 
+            background: hoveredIndex !== null
               ? `radial-gradient(circle, ${branches[hoveredIndex].accent} 0%, transparent 70%)`
               : "radial-gradient(circle, #6366f1 0%, transparent 70%)"
           }}
@@ -67,7 +67,7 @@ export function Ecosystem() {
       <div className="text-center mb-16 space-y-4 relative z-10">
         <span className="text-[9px] tracking-[0.4em] font-black text-white/40 uppercase block">THE ECOSYSTEM</span>
         <h2 className="text-3xl md:text-5xl font-serif text-white">The Houses of Fancy Lush</h2>
-        <p className="text-xs text-white/40 tracking-[0.1em] font-light max-w-md mx-auto">
+        <p className="text-xs text-white/40 tracking-widest font-light max-w-md mx-auto">
           Click to enter the dedicated digital salon and online catalog of each luxury branch.
         </p>
       </div>
@@ -95,18 +95,18 @@ export function Ecosystem() {
                   alt={branch.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="w-full h-full object-cover grayscale-0 opacity-40 md:grayscale md:opacity-25 md:group-hover:scale-110 md:group-hover:grayscale-0 md:group-hover:opacity-55 transition-all duration-[2.5s] ease-out"
+                  className="w-full h-full object-cover opacity-60 md:group-hover:scale-110 md:group-hover:opacity-80 transition-all duration-[2.5s] ease-out"
                 />
                 {/* Dark vignette layers */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/85 to-[#030303]/30 z-10"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-[#030303] via-[#030303]/85 to-[#030303]/30 z-10"></div>
               </div>
 
               {/* Card Content */}
               <div className="absolute inset-0 p-8 flex flex-col justify-between z-20">
-                
+
                 {/* Top metadata */}
                 <div>
-                  <span 
+                  <span
                     className="text-[8px] tracking-[0.3em] font-black uppercase px-3 py-1.5 rounded-full bg-white/5 border border-white/10"
                     style={{
                       color: isHovered ? branch.accent : "rgba(255,255,255,0.6)"
@@ -120,7 +120,7 @@ export function Ecosystem() {
                 <div className="space-y-4 transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-700">
                   <div className="space-y-1">
                     <h3 className="text-xl md:text-2xl font-serif text-white">{branch.name}</h3>
-                    <p 
+                    <p
                       className="text-[10px] tracking-wide font-light opacity-80"
                       style={{ color: isHovered ? branch.accent : "rgba(255, 255, 255, 0.5)" }}
                     >
@@ -136,7 +136,7 @@ export function Ecosystem() {
                     <span className="text-[9px] tracking-[0.25em] font-black uppercase text-white/60 group-hover:text-white transition-colors">
                       ENTER PORTAL
                     </span>
-                    <div 
+                    <div
                       className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500"
                       style={{
                         backgroundColor: isHovered ? branch.accent : "transparent",

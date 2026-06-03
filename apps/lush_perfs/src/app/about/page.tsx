@@ -19,11 +19,11 @@ export default function AboutPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[#050404]/85 z-10"></div>
           <Image
-            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=2000"
+            src="/images/perf_hero.png"
             alt="Atelier Gold Crafting"
             fill
             priority
-            className="w-full h-full object-cover grayscale object-center opacity-30"
+            className="w-full h-full object-cover object-center opacity-90"
           />
           {/* Radial Glowing vignette mask */}
           <div className="absolute inset-0 bg-linear-to-t from-[#050404] via-transparent to-[#050404]/70 z-20"></div>
@@ -37,7 +37,7 @@ export default function AboutPage() {
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="space-y-6"
           >
-            <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666] bg-[white]/5 border border-[white]/5 px-6 py-2 rounded-full backdrop-blur-md">
+            <span className="inline-block mb-6 text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666] bg-[white]/5 border border-[white]/5 px-6 py-2 rounded-full backdrop-blur-md mt-20">
               Atelier of Senses & Form
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-[white] tracking-tight">
@@ -64,7 +64,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-[white]/5 shadow-2xl bg-[#110c0a]"
+              className="relative aspect-4/5 rounded-[2.5rem] overflow-hidden group border border-[white]/5 shadow-2xl bg-[#110c0a]"
             >
               <div className="absolute inset-0 bg-linear-to-tr from-[#c89666]/10 to-transparent z-10 mix-blend-overlay"></div>
               <Image
@@ -86,7 +86,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-[white]/5 shadow-2xl mt-12 bg-[#110c0a]"
+              className="relative aspect-4/5 rounded-[2.5rem] overflow-hidden group border border-[white]/5 shadow-2xl mt-12 bg-[#110c0a]"
             >
               <div className="absolute inset-0 bg-linear-to-tr from-[#f5d6c6]/10 to-transparent z-10 mix-blend-overlay"></div>
               <Image
@@ -116,9 +116,9 @@ export default function AboutPage() {
             <p className="text-[white]/60 font-light leading-relaxed text-xs md:text-sm">
               For our fragrance extracts, we collaborate with veteran perfumers to source Cambodian Oud resin and Turkish roses. These raw organic materials undergo meticulous molecular distillation, aging, and concentration checks to guarantee longevity and a deep velvet silage that is unique to you.
             </p>
-            <div className="pt-6">
-              <Link href="/">
-                <button className="px-8 py-3.5 rounded-full bg-linear-to-r from-[#8e5e38] via-[#c89666] to-[#f5d6c6] hover:scale-105 transition-transform text-[#050404] text-[9px] tracking-widest font-black uppercase shadow-lg">
+            <div className="pt-6 flex flex-col sm:block">
+              <Link href="/" className="w-full sm:w-auto inline-block">
+                <button className="w-full px-8 py-3.5 rounded-full bg-linear-to-r from-[#8e5e38] via-[#c89666] to-[#f5d6c6] hover:scale-105 transition-transform text-[#050404] text-[9px] tracking-widest font-black uppercase shadow-lg">
                   Explore Boutique
                 </button>
               </Link>
@@ -128,43 +128,43 @@ export default function AboutPage() {
       </section>
 
       {/* Visionary Founder Section */}
-      <section className="py-24 px-6 md:px-12 relative z-10 bg-[white]/[0.005] border-y border-[white]/5 overflow-hidden">
+      <section className="py-24 px-6 md:px-12 relative z-10 bg-[white]/0.5 border-y border-[white]/5 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-          {/* Bio Story */}
-          <div className="space-y-8">
-            <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666]">The Visionary</span>
-            <h2 className="text-3xl md:text-4xl font-serif text-[white] leading-tight">
-              Hadarah <br />
-              <span className="italic text-[white]/40">Founder & CEO</span>
-            </h2>
-            <div className="relative p-8 rounded-[2rem] bg-[white]/[0.01] border border-[white]/5 backdrop-blur-3xl shadow-xl">
-              <div className="absolute top-6 left-6 text-6xl text-[#c89666]/10 font-serif leading-none">“</div>
-              <p className="text-[white]/80 font-light italic leading-relaxed relative z-10 pl-6 text-xs md:text-sm">
-                I wanted to create an experience where clinical precision meets uncompromised quality. Lush Accessories represents the ultimate personal signature—glistening fine jewelry to frame your appearance, and opulent fragrance notes to announce your presence.
-              </p>
-            </div>
-          </div>
-
           {/* Profile Card */}
-          <div className="flex justify-center relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-[#c89666]/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+          <div className="flex justify-center relative order-1 lg:order-0">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#c89666]/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative aspect-square w-full max-w-md rounded-full overflow-hidden border-[12px] border-[white]/5 shadow-3xl z-10"
+              className="relative aspect-square w-full max-w-sm rounded-full overflow-hidden border-12 border-[white]/5 shadow-3xl z-10"
             >
               <div className="absolute inset-0 bg-linear-to-tr from-[#c89666]/20 to-transparent z-10 mix-blend-overlay"></div>
               <Image
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800"
+                src="/images/about_pic.jpg"
                 alt="Founder Hadarah"
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
-                className="w-full h-full object-cover grayscale object-top"
+                className="w-full h-full object-cover object-[center_15%]"
               />
             </motion.div>
+          </div>
+
+          {/* Bio Story */}
+          <div className="space-y-8 order-2 lg:order-0">
+            <span className="text-[9px] tracking-[0.4em] font-black uppercase text-[#c89666]">The Visionary</span>
+            <h2 className="text-3xl md:text-4xl font-serif text-[white] leading-tight">
+              Hadarah <br />
+              <span className="italic text-[white]/40">Founder & CEO</span>
+            </h2>
+            <div className="relative p-8 rounded-4xl bg-[white]/1 border border-[white]/5 backdrop-blur-3xl shadow-xl">
+              <div className="absolute top-6 left-6 text-6xl text-[#c89666]/10 font-serif leading-none">“</div>
+              <p className="text-[white]/80 font-light italic leading-relaxed relative z-10 pl-6 text-xs md:text-sm">
+                I wanted to create an experience where clinical precision meets uncompromised quality. Lush Accessories represents the ultimate personal signature—glistening fine jewelry to frame your appearance, and opulent fragrance notes to announce your presence.
+              </p>
+            </div>
           </div>
 
         </div>

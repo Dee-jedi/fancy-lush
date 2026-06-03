@@ -19,8 +19,8 @@ export function Hero() {
           <source src="/videos/vid1.mp4" type="video/mp4" />
         </video>
         {/* Deep luxury vignettes */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-transparent to-[#030303] z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030303] via-transparent to-[#030303] z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#030303]/40 via-transparent to-[#030303] z-10" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#030303] via-transparent to-[#030303] z-10" />
       </div>
 
       <div className="max-w-4xl mx-auto z-20 text-center space-y-16">
@@ -49,7 +49,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 0.5 }}
-            className="text-[10px] sm:text-xs font-black tracking-[0.8em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-[#a78bfa] to-[#6366f1] block pl-[0.8em]"
+            className="text-[10px] sm:text-xs font-black tracking-[0.8em] uppercase text-transparent bg-clip-text bg-linear-to-r from-white via-[#a78bfa] to-[#6366f1] block pl-[0.8em]"
           >
             EMPIRE
           </motion.span>
@@ -91,8 +91,8 @@ export function Hero() {
           <span className="text-[8px] tracking-[0.4em] font-black text-white/30 uppercase">
             SCROLL TO ENTER
           </span>
-          <div className="w-[1px] h-16 bg-gradient-to-b from-[#6366f1]/50 to-transparent relative overflow-hidden">
-            <span className="absolute top-0 left-0 w-full h-4 bg-gradient-to-b from-transparent via-[#a78bfa] to-transparent animate-bounce" style={{ animationDuration: '2.5s' }}></span>
+          <div className="w-px h-16 bg-linear-to-b from-[#6366f1]/50 to-transparent relative overflow-hidden">
+            <span className="absolute top-0 left-0 w-full h-4 bg-linear-to-b from-transparent via-[#a78bfa] to-transparent animate-bounce" style={{ animationDuration: '2.5s' }}></span>
           </div>
         </motion.div>
 

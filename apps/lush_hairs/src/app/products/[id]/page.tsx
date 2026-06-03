@@ -16,6 +16,7 @@ import { useAuth } from '@/context/AuthContext';
 import { EditProductModal } from '@/components/admin/EditProductModal';
 import { DeleteConfirmationModal } from '@/components/admin/DeleteConfirmationModal';
 import { useSearch } from '@/context/SearchContext';
+import { ImageModal } from '@/components/ui/ImageModal';
 
 const REVALIDATE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
@@ -28,12 +29,14 @@ export default function ProductDetailPage() {
   const productsRef = useRef(products);
   productsRef.current = products;
   const lastFetchedRef = useRef<number>(0);
-  const [product, setProduct] = useState<any>(null);
-  const [activeImage, setActiveImage] = useState<string>('');
-  const [loading, setLoading] = useState(true);
+  const cachedInitialItem = products.find((p: any) => p.id === id);
+  const [product, setProduct] = useState<any>(cachedInitialItem || null);
+  const [activeImage, setActiveImage] = useState<string>(cachedInitialItem?.images?.[0] || cachedInitialItem?.image || '');
+  const [loading, setLoading] = useState(!cachedInitialItem);
   const [added, setAdded] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const fetchProduct = async (showLoader = true) => {
     if (!db || !id) {
@@ -86,15 +89,15 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[var(--background)] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-white/10 border-t-[var(--primary)] rounded-full animate-spin"></div>
+      <main className="min-h-screen bg-(--background) flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-white/10 border-t-(--primary) rounded-full animate-spin"></div>
       </main>
     );
   }
 
   if (!product) {
     return (
-      <main className="min-h-screen bg-[var(--background)] flex items-center justify-center">
+      <main className="min-h-screen bg-(--background) flex items-center justify-center">
         <div className="text-center space-y-6">
           <h1 className="text-4xl font-serif text-white">Product Not Found</h1>
           <Link href="/shop">
@@ -116,7 +119,7 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--background)] overflow-hidden">
+    <main className="min-h-screen bg-(--background) overflow-hidden">
       <Header />
       
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-32">
@@ -127,9 +130,10 @@ export default function ProductDetailPage() {
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              className="relative w-full aspect-[4/5] rounded-[40px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] group"
+              onClick={() => setIsImageModalOpen(true)}
+              className="relative w-full aspect-4/5 rounded-[40px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] group cursor-zoom-in"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--primary)]/20 to-[var(--secondary)]/20 mix-blend-overlay z-10"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-(--primary)/20 to-(--secondary)/20 mix-blend-overlay z-10"></div>
               {activeImage && (
                 <Image 
                   key={activeImage}
@@ -156,9 +160,9 @@ export default function ProductDetailPage() {
                     <button
                       key={idx}
                       onClick={() => setActiveImage(imgUrl)}
-                      className={`relative w-20 h-20 rounded-2xl overflow-hidden border transition-all duration-300 flex-shrink-0 cursor-pointer ${
+                      className={`relative w-20 h-20 rounded-2xl overflow-hidden border transition-all duration-300 shrink-0 cursor-pointer ${
                         isActive 
-                          ? 'border-[var(--primary)] shadow-[0_0_15px_rgba(139,92,246,0.3)] scale-[1.05]' 
+                          ? 'border-(--primary) shadow-[0_0_15px_rgba(139,92,246,0.3)] scale-[1.05]' 
                           : 'border-white/10 hover:border-white/30 hover:scale-[1.02]'
                       }`}
                     >
@@ -170,7 +174,7 @@ export default function ProductDetailPage() {
                         className="object-cover"
                       />
                       {isActive && (
-                        <div className="absolute inset-0 border-2 border-[var(--primary)] rounded-2xl pointer-events-none" />
+                        <div className="absolute inset-0 border-2 border-(--primary) rounded-2xl pointer-events-none" />
                       )}
                     </button>
                   );
@@ -186,10 +190,10 @@ export default function ProductDetailPage() {
             className="space-y-10 relative"
           >
             {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-r from-[var(--primary)]/10 to-[var(--secondary)]/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-linear-to-r from-(--primary)/10 to-(--secondary)/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
             
             <div className="space-y-4">
-              <Link href="/shop" className="inline-flex items-center gap-2 text-[10px] tracking-widest uppercase font-black text-white/40 hover:text-[var(--primary)] transition-colors">
+              <Link href="/shop" className="inline-flex items-center gap-2 text-[10px] tracking-widest uppercase font-black text-white/40 hover:text-(--primary) transition-colors">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M19 12H5M12 19l-7-7 7-7" />
                 </svg>
@@ -198,20 +202,20 @@ export default function ProductDetailPage() {
               <h1 className="text-5xl md:text-7xl font-serif text-white leading-tight">{product.name}</h1>
               
               <div className="flex flex-wrap items-center gap-6">
-                <p className="text-3xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]">
+                <p className="text-3xl font-sans font-bold text-transparent bg-clip-text bg-linear-to-r from-(--primary) to-(--secondary)">
                   {formatPrice(product.price)}
                 </p>
 
                 {product.color && (
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-white/80 font-medium">
-                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]"></span>
+                    <span className="w-2 h-2 rounded-full bg-linear-to-r from-(--primary) to-(--secondary)"></span>
                     Color: <span className="font-bold text-white">{product.color}</span>
                   </div>
                 )}
 
                 {product.size && (
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-white/80 font-medium">
-                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]"></span>
+                    <span className="w-2 h-2 rounded-full bg-linear-to-r from-(--primary) to-(--secondary)"></span>
                     Size / Length: <span className="font-bold text-white">{product.size}</span>
                   </div>
                 )}
@@ -233,7 +237,7 @@ export default function ProductDetailPage() {
                 size="lg"
                 rounded="full"
                 className={`w-full py-5 md:py-8 text-[13px] md:text-[14px] tracking-[0.3em] md:tracking-[0.4em] font-black uppercase transition-all duration-500 ${
-                  added ? 'bg-green-500 shadow-[0_0_30px_rgba(34,197,94,0.3)]' : 'bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] shadow-xl'
+                  added ? 'bg-green-500 shadow-[0_0_30px_rgba(34,197,94,0.3)]' : 'bg-linear-to-r from-(--primary) to-(--secondary) shadow-xl'
                 }`}
               >
                 {added ? "ADDED TO CART ✓" : "ADD TO CART"}
@@ -244,7 +248,7 @@ export default function ProductDetailPage() {
               <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-center gap-6 text-[10px] tracking-[0.2em] font-black w-full">
                 <button 
                   onClick={() => setIsEditModalOpen(true)}
-                  className="text-white/40 hover:text-[var(--primary)] transition-all cursor-pointer hover:scale-105 duration-300"
+                  className="text-white/40 hover:text-(--primary) transition-all cursor-pointer hover:scale-105 duration-300"
                 >
                   EDIT PRODUCT
                 </button>
@@ -288,6 +292,13 @@ export default function ProductDetailPage() {
         isOpen={isDeleteModalOpen} 
         product={product} 
         onClose={() => setIsDeleteModalOpen(false)} 
+      />
+
+      <ImageModal 
+        isOpen={isImageModalOpen} 
+        onClose={() => setIsImageModalOpen(false)} 
+        imageSrc={activeImage} 
+        altText={product?.name || 'Product Image'} 
       />
     </main>
   );
