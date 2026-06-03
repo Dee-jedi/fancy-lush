@@ -76,7 +76,7 @@ export const Hero = () => {
                className="relative w-full h-full"
              >
                <Image
-                 src="/images/spa-view/treatment-room.png"
+                 src="/images/spa-view/DSC_9754.jpg"
                  alt="Absolute Serenity Spa"
                  fill
                  priority

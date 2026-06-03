@@ -31,14 +31,14 @@ export default function AboutPage() {
           <div className="absolute bottom-1/4 -right-1/4 w-[60%] h-[60%] bg-(--secondary)/15 rounded-full blur-[150px] mix-blend-screen pointer-events-none z-10"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center z-30 relative pt-24">
+        <div className="max-w-4xl mx-auto px-6 text-center z-30 relative pt-32 md:pt-40">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="space-y-6"
           >
-            <span className="text-[10px] tracking-[0.4em] font-black uppercase text-(--primary) bg-white/5 border border-white/10 px-6 py-2 rounded-full backdrop-blur-md">
+            <span className="inline-block text-[10px] tracking-[0.4em] font-black uppercase text-(--primary) bg-white/5 border border-white/10 px-6 py-2 rounded-full backdrop-blur-md">
               Atelier of Bold Expression
             </span>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white tracking-tight">
@@ -183,20 +183,20 @@ export default function AboutPage() {
           <p className="text-white/50 font-light max-w-lg mx-auto text-xs md:text-sm leading-relaxed">
             Follow our visual diaries, peek behind the scenes at raw weft production, and share your signature bold look with us!
           </p>
-          <div className="flex flex-wrap justify-center gap-6 pt-6">
+          <div className="flex justify-center items-center gap-6 pt-6">
             <button
               onClick={() => window.open('https://instagram.com')}
-              className="group relative px-8 py-4 rounded-full overflow-hidden border border-white/10 hover:border-transparent bg-white/5 transition-all duration-500 hover:scale-105"
+              className="w-14 h-14 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-(--primary)/20 hover:border-(--primary)/50 transition-all duration-300 hover:scale-110 shadow-xl"
+              aria-label="Instagram"
             >
-              <div className="absolute inset-0 bg-linear-to-r from-pink-500 to-(--primary) opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-              <span className="relative z-10 text-[10px] font-black tracking-widest uppercase text-white">Instagram — @fancylush_hairs</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </button>
             <button
               onClick={() => window.open('https://tiktok.com')}
-              className="group relative px-8 py-4 rounded-full overflow-hidden border border-white/10 hover:border-transparent bg-white/5 transition-all duration-500 hover:scale-105"
+              className="w-14 h-14 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-(--secondary)/20 hover:border-(--secondary)/50 transition-all duration-300 hover:scale-110 shadow-xl"
+              aria-label="TikTok"
             >
-              <div className="absolute inset-0 bg-linear-to-r from-black to-(--secondary) opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-              <span className="relative z-10 text-[10px] font-black tracking-widest uppercase text-white">TikTok — @fancylush_hairs</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/><path d="M9 16a4 4 0 1 0 4-4"/></svg>
             </button>
           </div>
         </div>

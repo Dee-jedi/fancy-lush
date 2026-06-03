@@ -47,7 +47,7 @@ export const CinematicVideo = () => {
           loop 
           muted 
           playsInline
-          poster="/images/spa-view/treatment-room.png"
+          poster="/images/spa-view/DSC_9754.jpg"
           className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2s] ${isPlaying ? 'brightness-[0.8] scale-100' : 'brightness-[0.4] scale-105 blur-[2px]'}`}
         >
           <source src="/videos/vid1.mp4" type="video/mp4" />
@@ -69,11 +69,11 @@ export const CinematicVideo = () => {
               >
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-2xl">
                   {isPlaying ? (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--primary)]">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-(--primary)">
                       <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="currentColor" />
                     </svg>
                   ) : (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1 text-[var(--primary)]">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1 text-(--primary)">
                       <path d="M5 3L19 12L5 21V3Z" fill="currentColor" />
                     </svg>
                   )}
@@ -98,7 +98,7 @@ export const CinematicVideo = () => {
         </AnimatePresence>
 
         {/* Ambient overlay when playing but no controls */}
-        <div className={`absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent transition-opacity duration-1000 ${isPlaying && !showControls ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent transition-opacity duration-1000 ${isPlaying && !showControls ? 'opacity-100' : 'opacity-0'}`} />
       </motion.div>
     </section>
   );
