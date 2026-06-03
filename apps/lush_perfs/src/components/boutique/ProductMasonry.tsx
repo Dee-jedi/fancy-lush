@@ -90,6 +90,7 @@ export function ProductMasonry({ products }: ProductMasonryProps) {
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 grayscale-[0.1] group-hover:grayscale-0"
+                    unoptimized
                   />
 
                   {/* Cinematic Warm Gradient Overlay */}

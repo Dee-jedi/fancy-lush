@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,14 +34,23 @@ export function Header() {
             <a href="#showroom" className="text-[10px] tracking-[0.3em] font-black uppercase text-white/50 hover:text-[#a78bfa] transition-colors">THE SHOWROOM</a>
           </nav>
 
-          {/* Hamburger Menu Button */}
+          {/* Desktop CTA */}
+          <Link href="/membership" className="hidden md:block">
+            <button className="px-6 py-2.5 rounded-full bg-[#6366f1] border border-[#6366f1] text-[9px] tracking-[0.2em] font-black uppercase text-white hover:bg-[#a78bfa] hover:border-[#a78bfa] transition-all duration-300 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+              Become a Member
+            </button>
+          </Link>
+
+          {/* Hamburger Menu Button (Mobile Only) */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="w-12 h-12 flex flex-col items-center justify-center gap-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
             aria-label="Open menu"
           >
-            <span className="w-5 h-0.5 bg-white rounded-full"></span>
-            <span className="w-5 h-0.5 bg-white rounded-full"></span>
+            <div className="flex flex-col items-end gap-1">
+              <span className="w-[14px] h-[1.5px] bg-white rounded-full"></span>
+              <span className="w-4 h-[1.5px] bg-white rounded-full"></span>
+            </div>
           </button>
         </div>
       </header>

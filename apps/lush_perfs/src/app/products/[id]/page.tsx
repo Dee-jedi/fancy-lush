@@ -145,6 +145,7 @@ export default function ProductDetailPage() {
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="w-full h-full object-cover transition-transform duration-[2s] ease-out hover:scale-105"
+              unoptimized
             />
             <div className="absolute top-8 left-8 z-20">
               <span className="bg-[#050404]/85 backdrop-blur-md px-5 py-2.5 rounded-full text-[8px] tracking-[0.25em] font-black uppercase text-[#c89666] border border-[#c89666]/35 shadow-md">
