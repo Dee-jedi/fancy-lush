@@ -82,7 +82,7 @@ export default function AboutPage() {
             >
               <img
                 src="/images/about_pic.jpg"
-                alt="Owner of FancyLush"
+                alt="Bidemi Olayioye - Founder & CEO"
                 loading="lazy"
                 className="w-full h-full object-cover object-[center_15%]"
               />
@@ -97,16 +97,30 @@ export default function AboutPage() {
               <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-(--secondary) mb-4 block">
                 Meet The Visionary
               </span>
-              <h2 className="text-4xl md:text-6xl font-serif text-(--primary) mb-8">The Face Behind The Glow</h2>
-              <p className="text-lg text-(--foreground)/60 font-light leading-relaxed mb-6">
-                With over a decade of expertise in holistic wellness and clinical esthetics, the founder of FancyLush embarked on a mission to redefine luxury skincare.
-              </p>
-              <p className="text-lg text-(--foreground)/60 font-light leading-relaxed mb-10">
-                "I wanted to create a space where clinical results meet profound relaxation. FancyLush is more than a spa; it's a commitment to your confidence, well-being, and absolute comfort."
-              </p>
+              <h2 className="text-4xl md:text-6xl font-serif text-(--primary) mb-8">Bidemi Olayioye</h2>
+              
+              <div className="space-y-4 mb-8">
+                <p className="text-base text-(--foreground)/70 font-light leading-relaxed">
+                  Bidemi Olayioye is the Founder and Chief Executive Officer of Fancylush Ecosystem, a luxury beauty, wellness, and lifestyle brand dedicated to enhancing confidence, elegance, and well-being.
+                </p>
+                <p className="text-base text-(--foreground)/70 font-light leading-relaxed">
+                  With a passion for excellence and innovation, she has built Fancylush into a trusted destination for premium spa services, professional hair care, dental aesthetics, fine jewelry, luxury fragrances, and lifestyle experiences.
+                </p>
+                <p className="text-base text-(--foreground)/70 font-light leading-relaxed">
+                  Her vision is to establish Fancylush as a globally recognized African luxury brand known for exceptional service, quality, and customer satisfaction.
+                </p>
+              </div>
+
+              <div className="relative p-8 rounded-3xl bg-(--secondary)/5 border border-(--primary)/5 mb-8">
+                <div className="absolute top-4 left-4 text-5xl text-(--primary)/10 font-serif leading-none">“</div>
+                <p className="text-lg text-(--primary) font-light italic leading-relaxed relative z-10 pl-6">
+                  Luxury is not just what we offer—it is the standard by which we serve.
+                </p>
+              </div>
+
               <div className="pt-4 border-t border-(--primary)/10 inline-block">
-                <span className="font-serif italic text-3xl text-(--primary)">Hadarah</span>
-                <span className="block text-xs tracking-widest text-(--foreground)/40 uppercase mt-2">Founder & CEO</span>
+                <span className="font-serif italic text-3xl text-(--primary)">Bidemi Olayioye</span>
+                <span className="block text-xs tracking-widest text-(--foreground)/40 uppercase mt-2">Founder & CEO, Fancylush Ecosystem</span>
               </div>
             </motion.div>
           </div>

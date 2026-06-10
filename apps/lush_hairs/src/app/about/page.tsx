@@ -137,17 +137,31 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
           {/* Bio Story */}
-          <div className="space-y-8 order-2 lg:order-1">
+          <div className="space-y-6 order-2 lg:order-1">
             <span className="text-[10px] tracking-[0.4em] font-black uppercase text-(--primary)">The Visionary</span>
             <h2 className="text-4xl md:text-5xl font-serif text-white leading-tight">
-              Hadarah <br />
+              Bidemi Olayioye <br />
               <span className="italic text-white/40">Founder & CEO</span>
             </h2>
-            <div className="relative p-8 rounded-4xl bg-white/2 border border-white/5 backdrop-blur-3xl shadow-xl">
+            
+            <div className="space-y-4">
+              <p className="text-white/80 font-light leading-relaxed text-sm md:text-base">
+                Bidemi Olayioye is the Founder and Chief Executive Officer of Fancylush Ecosystem, a luxury beauty, wellness, and lifestyle brand dedicated to enhancing confidence, elegance, and well-being.
+              </p>
+              <p className="text-white/80 font-light leading-relaxed text-sm md:text-base">
+                With a passion for excellence and innovation, she has built Fancylush into a trusted destination for premium spa services, professional hair care, dental aesthetics, fine jewelry, luxury fragrances, and lifestyle experiences.
+              </p>
+              <p className="text-white/80 font-light leading-relaxed text-sm md:text-base">
+                Her vision is to establish Fancylush as a globally recognized African luxury brand known for exceptional service, quality, and customer satisfaction.
+              </p>
+            </div>
+
+            <div className="relative p-8 rounded-4xl bg-white/2 border border-white/5 backdrop-blur-3xl shadow-xl mt-4">
               <div className="absolute top-6 left-6 text-6xl text-(--primary)/10 font-serif leading-none">“</div>
               <p className="text-white/80 font-light italic leading-relaxed relative z-10 pl-6 text-sm md:text-base">
-                I wanted to create an experience where clinical precision meets uncompromised quality. Lush Hairs is more than a boutique; it is a commitment to your confidence, your power, and your unique expression.
+                Luxury is not just what we offer—it is the standard by which we serve.
               </p>
+              <p className="text-white/60 font-medium text-sm pl-6 mt-4">— Bidemi Olayioye</p>
             </div>
           </div>
 
@@ -164,7 +178,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-linear-to-tr from-(--primary)/20 to-transparent z-10 mix-blend-overlay"></div>
               <Image
                 src="/images/about_pic.jpg"
-                alt="Founder Hadarah"
+                alt="Bidemi Olayioye - Founder & CEO"
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 className="w-full h-full object-cover grayscale object-top"
