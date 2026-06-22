@@ -38,14 +38,14 @@ export function Ecosystem() {
       link: "https://lushhairs.vercel.app",
     },
     {
-      name: "Lush Dentals",
-      sub: "State-of-the-Art Aesthetic Care",
-      tag: "CLINICAL ARTISTRY",
-      desc: "Where strict clinical dental precision seamlessly meets aesthetic smile artistry. Pain-free certified veneer installations, scaling, whitening, and advanced orthodontics.",
-      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800",
-      accent: "#0d9488", // Mint Teal
-      shadow: "rgba(13, 148, 136, 0.15)",
-      link: "https://fancy-lush-lush-dentals.vercel.app",
+      name: "Fancy Lush Academy",
+      sub: "Mastery in Beauty & Craft",
+      tag: "EDUCATION & EXCELLENCE",
+      desc: "Learn from the masters. Comprehensive training programs covering beauty aesthetics, hair artistry, and premium lifestyle craftsmanship in an immersive academic environment.",
+      image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800",
+      accent: "#fbbf24", // Academic Gold
+      shadow: "rgba(251, 191, 36, 0.15)",
+      link: "https://fancy-lush-academy.vercel.app",
     },
   ];
 
