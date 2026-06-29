@@ -6,6 +6,8 @@ import { Marquee } from "../components/academy/Marquee";
 import { FounderMessage } from "../components/academy/FounderMessage";
 import { Benefits } from "../components/academy/Benefits";
 
+import { SchoolsPreview } from "../components/academy/SchoolsPreview";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#fcfbf9] text-[#1a1a1a] font-sans selection:bg-[#d4af37] selection:text-white overflow-x-hidden">
@@ -15,6 +17,7 @@ export default function Home() {
 
       <main>
         <Hero />
+        <SchoolsPreview />
         <Marquee />
         <FounderMessage />
         <Benefits />

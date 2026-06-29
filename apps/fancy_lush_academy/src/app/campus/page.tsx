@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function CampusPage() {
   return (
-    <div className="min-h-screen bg-[#fcfbf9] text-[#1a1a1a] pt-24 md:pt-32 pb-24">
+    <div className="min-h-screen bg-[#fcfbf9] text-[#1a1a1a] pt-32 md:pt-48 pb-24">
       <div className="max-w-[1400px] mx-auto px-6 md:px-16">
         
         <div className="text-center mb-16 md:mb-24">

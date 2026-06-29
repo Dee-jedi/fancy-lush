@@ -34,10 +34,13 @@ export function FounderMessage() {
             <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4af37] block mb-6">Vision & Leadership</span>
 
             <h2 className="text-3xl md:text-5xl font-serif leading-tight mb-8 text-[#1a1a1a]">
-              "Our mission is to equip individuals with life-changing skills that promote <span className="italic text-[#8c8c8c]">financial independence</span> and <span className="italic text-[#8c8c8c]">career success</span>."
+              "To become Africa’s leading beauty, wellness, and aesthetics academy, raising <span className="italic text-[#8c8c8c]">globally competitive</span> professionals and entrepreneurs."
             </h2>
 
             <div className="space-y-6 text-[#595959] font-light text-sm md:text-base leading-relaxed max-w-xl">
+              <p className="font-medium text-[#1a1a1a]">
+                Our mission is to equip individuals with life-changing skills that promote financial independence and career success.
+              </p>
               <p>
                 Are you looking to learn a valuable skill in beauty, wellness, hair care, spa therapy, makeup artistry, cosmetics, or entrepreneurship? Do you know teenagers, relatives, or friends who want to build a successful future through practical, professional training?
               </p>

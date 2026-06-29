@@ -7,58 +7,59 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center pt-32 pb-20 md:pt-20 md:pb-0 overflow-hidden">
-      <div className="absolute inset-0 z-0 flex flex-col md:flex-row">
-        <div className="absolute inset-0 md:relative md:w-[45%] lg:w-[40%] bg-[#fcfbf9]/93 md:bg-[#fcfbf9] z-10 md:z-0"></div>
-        <div className="absolute inset-0 md:relative md:w-[55%] lg:w-[60%] h-full z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=2000"
-            alt="Luxury Background"
-            fill
-            sizes="(max-width: 768px) 100vw, 60vw"
-            priority
-            className="object-cover object-center scale-105"
-          />
-          <div className="absolute inset-0 hidden md:block bg-linear-to-r from-[#fcfbf9] via-[#fcfbf9]/50 to-transparent"></div>
-        </div>
+    <section className="relative min-h-screen flex items-center pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-bg.png"
+          alt="Luxury Academy Interior"
+          fill
+          sizes="100vw"
+          priority
+          style={{ objectFit: "cover", objectPosition: "center right" }}
+        />
+        {/* Wide, multi-stop gradient so the image gently fades into the text area */}
+        <div className="absolute inset-0 bg-[#fcfbf9]/70 md:bg-transparent md:bg-linear-to-b from-[#fcfbf9]/80 via-transparent to-[#fcfbf9]/80"></div>
+        {/* Mobile: full overlay so text is readable */}
+        <div className="absolute inset-0 md:hidden bg-[#fcfbf9]/60"></div>
       </div>
 
-      <div className="max-w-[1600px] w-full mx-auto px-6 md:px-16 relative z-20 flex flex-col justify-center">
+      <div className="max-w-[1600px] w-full mx-auto px-6 md:px-16 relative z-20 flex flex-col justify-center items-center text-center">
 
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center space-x-4 mb-6 md:mb-8"
+          className="flex items-center justify-center space-x-4 mb-6 md:mb-8"
         >
-          <div className="w-8 md:w-12 h-[1px] bg-[#d4af37]"></div>
-          <span className="text-[8px] md:text-[9px] uppercase tracking-[0.3em] font-bold text-[#d4af37]">Intake: July 1st</span>
+          <div className="w-8 md:w-12 h-px bg-[#d4af37]"></div>
+          <span className="text-[8px] md:text-[9px] uppercase tracking-[0.3em] font-bold text-[#d4af37]">Intake: 31st July, 2026</span>
+          <div className="w-8 md:w-12 h-px bg-[#d4af37]"></div>
         </motion.div>
 
-        <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-serif leading-[1.1] md:leading-[0.9] tracking-tight mb-8 md:mb-10">
+        <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[8rem] font-serif leading-[1.2] md:leading-none tracking-tight mb-8 md:mb-12 flex flex-wrap justify-center items-baseline gap-x-3 md:gap-x-6">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="block text-[#1a1a1a]"
+            className="text-[#1a1a1a]"
           >
-            Learn The
+            Learn.
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="block text-[#8c8c8c] italic font-light ml-4 sm:ml-12 md:ml-32"
+            className="text-[#8c8c8c] italic font-light"
           >
-            Art Of
+            Earn.
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="block text-[#1a1a1a]"
+            className="text-[#1a1a1a] flex items-center"
           >
-            Luxury.
+            Lead<span className="text-[#d4af37]">.</span>
           </motion.span>
         </h1>
 
@@ -66,18 +67,17 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-base sm:text-lg md:text-xl text-[#595959] font-light max-w-sm sm:max-w-md lg:max-w-xl leading-[1.6] md:leading-[1.8] mb-10 md:mb-12 ml-2 sm:ml-6 md:ml-12 border-l border-[#d4af37]/30 pl-4 md:pl-6"
+          className="text-base sm:text-lg md:text-xl text-[#595959] font-light max-w-sm sm:max-w-md lg:max-w-2xl leading-[1.6] md:leading-[1.8] mb-10 md:mb-12"
         >
-          The premier institution for aesthetic excellence. Offering rigorous physical masterclasses in Ilorin and comprehensive virtual programs globally.
+          Transforming Passion into Profitable Beauty Careers. A premier training institution offering internationally relevant education in Beauty, Spa, Wellness, Aesthetics, Hair, Nails, Permanent Makeup, and Entrepreneurship.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="ml-4 md:ml-12"
         >
-          <Link href="/register" className="group flex items-center space-x-6 w-max">
+          <Link href="/register" className="group flex flex-col items-center space-y-4">
             <div className="w-16 h-16 rounded-full border border-[#1a1a1a] flex items-center justify-center group-hover:bg-[#1a1a1a] group-hover:text-white transition-all duration-500">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </div>

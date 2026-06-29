@@ -20,11 +20,12 @@ export function Navigation() {
     };
   }, [isOpen]);
 
-  const links = [
-    { name: "Home", path: "/" },
-    { name: "Programs", path: "/programs" },
-    { name: "Campus & Welfare", path: "/campus" },
-  ];
+    const links = [
+      { name: "Home", path: "/" },
+      { name: "Programs", path: "/programs" },
+      { name: "Admissions", path: "/admissions" },
+      { name: "Campus & Welfare", path: "/campus" },
+    ];
 
   return (
     <>
@@ -34,14 +35,34 @@ export function Navigation() {
             FL <span className="text-[#d4af37] italic">Schools</span>
           </Link>
           
-          <button 
-            onClick={toggleDrawer}
-            className="flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none z-[60]"
-          >
-            <span className={`block w-6 h-[1.5px] bg-[#1a1a1a] transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-[7.5px]' : ''}`}></span>
-            <span className={`block w-6 h-[1.5px] bg-[#1a1a1a] transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-6 h-[1.5px] bg-[#1a1a1a] transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-[7.5px]' : ''}`}></span>
-          </button>
+          <div className="flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
+              {links.map((link, idx) => (
+                <Link 
+                  key={idx} 
+                  href={link.path}
+                  className="text-[11px] uppercase tracking-[0.15em] font-medium text-[#1a1a1a] hover:text-[#d4af37] transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Link 
+                href="/register"
+                className="px-6 py-3 bg-[#1a1a1a] text-white text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-[#d4af37] transition-colors rounded-sm ml-4"
+              >
+                Apply Today
+              </Link>
+            </div>
+            
+            <button 
+              onClick={toggleDrawer}
+              className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none z-[60]"
+            >
+              <span className={`block w-6 h-[1.5px] bg-[#1a1a1a] transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-[7.5px]' : ''}`}></span>
+              <span className={`block w-6 h-[1.5px] bg-[#1a1a1a] transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block w-6 h-[1.5px] bg-[#1a1a1a] transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-[7.5px]' : ''}`}></span>
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -77,7 +98,7 @@ export function Navigation() {
               </div>
               
               <div className="mt-auto pt-10 border-t border-[#1a1a1a]/10">
-                <p className="text-[#8c8c8c] text-xs uppercase tracking-widest text-center mb-6">Enrollment closes June 30th</p>
+                <p className="text-[#8c8c8c] text-xs uppercase tracking-widest text-center mb-6">Intake: 31st July, 2026</p>
                 <Link 
                   href="/register"
                   onClick={toggleDrawer}
